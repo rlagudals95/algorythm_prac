@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+
+        //일곱난쟁이의 합은 100이다, 이때 100을 넘어가는 숫자를 가진 난쟁이들을 제거  
+        const solution = (arr) => {
+
+            let answer 
+            // replaceAll 활용해 모든 str 바꾸기
+            answer = arr.replace(/A/g, '#')
+
+            //let answer = "";
+
+            //for (let x of arr){
+            //    console.log(x)
+                // 하나씩 더 해주는 방식
+            //    if(x === 'A') arr += '#'
+            //    else answer += x;
+            //}
+
+
+            
+
+            return answer
+        }
+
+
+
+        console.log(solution('BANANA'));
+
+
+
+
+    </script>
+</body>
+
+</html>
