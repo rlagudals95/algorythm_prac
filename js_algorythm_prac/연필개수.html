@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // 연필 1다스는 12자루다 학생 1인당 연필 1개를 나눠줘야한다면
+        // 학생수 n 명이 주어졌을 때 연필 몇 다스가 필요한지 구하시오!
+        const solution = (n) => {
+            let sum, answer
+            // 12의 배수일 경우는 몫이 바로 정답!
+            if (n%12 === 0 ) answer = n/12
+            // 아니라면 소숫점을 올림한 값이 정답!
+            else answer = Math.ceil(n/12) 
+            
+            return answer
+        }
+
+
+        console.log(solution(25));
+    </script>
+</body>
+
+</html>
