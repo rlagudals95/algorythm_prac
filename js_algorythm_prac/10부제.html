@@ -1,0 +1,26 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // 일의 자릿수가 num인 수들의 갯수를 출력
+        const solution = (day , array) => {
+            let answer = 0;
+            
+            for (let x of array){
+                // 10으로 나누면 일의 자릿수가 나온다!
+                if(x%10 === day) answer++;
+            }
+            return answer
+        }
+
+        
+        let arr = [25,23,11,47,53,17,33];
+        console.log(solution(3, arr));
+    </script>
+</body>
+
+</html>
