@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // 입력 받은 세수 중에 가장 작은 값을 출력하는 프로그램
+        const solution = (a,b,c) => {
+            
+            let answer
+            //a 와 b를 비교
+            if(a<b) answer = a;
+            // 서로 비교하며 작은 값을 answer로 선언
+            else answer = b;
+
+            if(c<answer) answer = c;
+
+            return answer
+        }
+
+
+        console.log(solution(6, 5, 11));
+    </script>
+</body>
+
+</html>
