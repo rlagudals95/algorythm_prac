@@ -1,0 +1,62 @@
+<!-- <html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // 나의 풀이
+        const solution = (str) => {
+            let answer
+
+            let word = [...str]
+
+            // console.log(word)
+            setList = new Set(word)
+            arr = [...setList]
+            answer = arr.join('')
+            return answer
+        }
+
+        let str = 'ksekkset'
+        console.log(solution(str));
+    </script>
+</body>
+
+</html> -->
+
+<!-- 인프런 풀이 -->
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // 나의 풀이
+        const solution = (s) => {
+            let answer = ""
+
+            // console.log(s.indexOf('k', 1)) //0번째 위치에서 k가 발견됨 , 뒤의 숫자는 1번 idx이후로 또 k가 있는지 검사하는 것 => 3이 출력됨
+
+            // 이것을 이용해 i 와 indexOf(s[i])가 같은 것만 뽑아준다 중복제거!
+            for (let i = 0; i < s.length; i++) {
+                if (i === s.indexOf(s[i])) answer += s[i]
+
+
+            }
+
+            return answer
+        }
+
+        let s = 'ksekkset'
+        console.log(solution(s));
+    </script>
+</body>
+
+</html>

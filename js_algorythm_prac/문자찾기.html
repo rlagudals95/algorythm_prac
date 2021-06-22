@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+
+        //일곱난쟁이의 합은 100이다, 이때 100을 넘어가는 숫자를 가진 난쟁이들을 제거  
+        const solution = (word) => {
+
+            let answer = 0;
+
+            for (let x of word) {
+                if (x === 'R') answer += 1
+            }
+            return answer
+        }
+
+        let word = 'COMPUTERPROGRAMMING'
+        console.log(solution(word));
+
+    </script>
+</body>
+
+</html>

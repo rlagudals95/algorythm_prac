@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+        const solution = (str) => {
+
+            let answer = ""
+
+            for (let x of str) {
+                if (x.toUpperCase() !== x) x = x.toUpperCase()
+                answer += x
+            }
+
+            return answer
+        }
+
+        let str = 'itisTimeToStudy'
+        console.log(solution(str));
+
+    </script>
+</body>
+
+</html>

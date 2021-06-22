@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+        const solution = (str) => {
+            //가장 작은 숫자를 변수에 선언
+            //loop를 돌며 max값을 바꿔주면서 비교
+            let answer, max = Number.MIN_SAFE_INTEGER
+
+            console.log(max)
+            for (let x of str) {
+                if (x.length > max) {
+                    max = x.length
+                    answer = x;
+                }
+            }
+
+
+            return answer
+        }
+
+        let str = ['teacher', 'time', 'student', 'beautiful', 'good']
+        console.log(solution(str));
+
+    </script>
+</body>
+
+</html>

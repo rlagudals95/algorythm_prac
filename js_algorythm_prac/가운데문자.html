@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // 주어진 문자열의 가운데 값을 출력
+        // 주어진 문자열의 길이가 짝수일 때 가운데 2글자 출력
+        const solution = (str) => {
+            let answer
+
+            let word = [...str]
+            console.log(word)
+            console.log(Math.floor(str.length / 2))
+
+            if (str.length % 2 === 0) answer = word[Math.floor(str.length / 2) - 1] + word[Math.floor(str.length / 2)]
+            else answer = word[Math.floor(str.length / 2)]
+
+
+            return answer
+        }
+
+
+        let str = 'stumdy'
+        console.log(solution(str));
+    </script>
+</body>
+
+</html>
+
+<!-- substring을 이용한 방법 -->
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // 주어진 문자열의 가운데 값을 출력
+        // 주어진 문자열의 길이가 짝수일 때 가운데 2글자 출력
+        const solution = (str) => {
+            let answer
+
+            let mid = Math.floor(str.length / 2)
+            //홀수인 경우
+            if (str.length % 2 == 1) answer = str.substring(mid, mid + 1)
+            // substring이란? ex) str.substring(2,3) => study의 2부터 3전을 가르킴 index 값을 가르킴 => 'u' 
+
+            else answer = str.substring(mid - 1, mid + 1,)
+            return answer
+        }
+
+
+        let str = 'study'
+        console.log(solution(str));
+    </script>
+</body>
+
+</html>

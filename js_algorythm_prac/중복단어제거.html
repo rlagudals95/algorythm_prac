@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+
+        const solution = (words) => {
+            // let answer = []
+            // 반복문 사용해서 중복제거한 배열 만들기
+            // for (let i = 0; i < words.length; i++) {
+            //     if (i === words.indexOf(words[i])) answer = words[i]
+            // }
+
+            // filter를 사용한 방법
+
+            let answer
+
+            answer = words.filter((v, idx) => {
+
+                return words.indexOf(v) === idx
+                //참이 되는 값만 answer에 담기는 filter함수
+
+            })
+
+
+            return answer
+        }
+
+        let words = ['good', 'time', 'good', 'time', 'student']
+
+        console.log(solution(words));
+    </script>
+</body>
+
+</html>
