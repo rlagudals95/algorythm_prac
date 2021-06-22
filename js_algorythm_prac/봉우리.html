@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // 3,6,9,12 방향을 비교해서 가장큰 수가 봉우리가 된다
+        const solution = (arr) => {
+
+            let answer = 0;
+            let n = arr.length;
+            let dx = [-1,0,1,0];
+            let dy = [0,1,0,-1];
+
+            for (let i = 0; i < n; i++){
+                for(let j = 0; j < n;j++){
+                    let flag = 1;
+                    for(let k = 0; k< dx.length; k++){
+                        //가려고 하는 방향
+                        let nx = i +dx[k];//행좌표
+                        let ny = j +dy[k];//열좌표
+                        // 현재 지점 arr[i][j]
+                        if(nx >=0 && nx < n && ny >=0 && ny < n && arr[nx][ny] >= arr[i][j]){ //바깥쪽 범위를 탐색하면 에러가 떠서 범위를 정해준다
+                            flag = 0;
+                            break;
+                        } // 현재 지점이 봉우리가 아니라면
+                    }
+                    if(flag) answer++; // flag가 true 1이라면? answer++
+                }
+            }
+
+
+
+
+            return answer
+        }
+
+        let arr = [
+        [5,3,7,2,3],
+        [3,7,1,6,1],
+        [7,2,5,3,4],
+        [4,3,6,4,1],
+        [8,7,3,5,2],
+        ]
+
+        console.log(solution(arr));
+    </script>
+</body>
+
+</html>
+
+
