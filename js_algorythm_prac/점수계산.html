@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+        const solution = (s) => {
+           
+            let answer = 0;
+            let num = 1
+            // 연속해서 맞는다면 점수는 1점씩 가산점이 붙는다
+            for (let i = 0; i < s.length; i++){
+
+                if(s[i] === 1){
+                    answer = answer + num
+                    num++
+                } else {
+                    num = 1
+                }
+
+            }
+
+            return answer
+        }
+
+        let s = [1,0,1,1,1,0,0,1,1,0]
+        console.log(solution(s));
+
+    </script>
+</body>
+
+</html>
