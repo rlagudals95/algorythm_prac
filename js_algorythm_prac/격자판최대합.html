@@ -1,0 +1,78 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+        const solution = (arr) => {
+            let answer
+            let numList = []
+            let sum = 0
+            let j = 0;
+            //행의 합
+
+           
+            for (let i = 0; j < arr.length; i++){
+                // 행의합
+              
+               sum = sum += arr[j][i]
+               if(i === arr.length-1) {
+                   numList.push(sum)
+                   i = i-arr.length;
+                   j++;
+                   sum = 0;
+               }
+            }
+
+           //세로
+            let r = 0; //가로 //c는 세로
+            let sum2 = 0;
+            for (let c = 0; r < arr.length; c++){
+                
+                sum2 = sum2 += arr[c][r]
+                 if (c === arr.length - 1) {
+                    numList.push(sum2)
+                    c = c - arr.length;
+                    r++;
+                    sum2 = 0;
+                }
+            }
+         
+            let sum3 = 0;
+            let sum4 = 0;
+            for (let s = 0; s<arr.length; s++){
+               
+
+               // console.log('2',arr[s][s]);
+                sum3 += arr[s][s]
+                sum4 += arr[s][arr.length - 1 - s]
+                 if(s === arr.length-1){
+                      numList.push(sum3)
+                      numList.push(sum4)
+                 }
+            }
+           
+
+            console.log(numList)
+            
+            answer = Math.max.apply(null, numList)
+            return answer
+        }
+        // 격자판 배열이 주어진다 
+        // 격자판 각각의 열, 행, 두개의 대각선 숫자들의 총합이 가장 큰 경우의 총합을 구하시오
+        let arr= [[10,13,10,12,15],
+                  [12,39,30,23,11],
+                  [11,25,50,53,15],
+                  [19,27,29,37,27],
+                  [19,13,30,13,19]]
+        console.log(solution(arr));
+
+
+    </script>
+</body>
+
+</html>
