@@ -1,4 +1,4 @@
-<html>
+<!-- <html>
 
 <head>
     <meta charset="UTF-8">
@@ -26,9 +26,43 @@
 
             return answer
         }
+        console.log(solution('gooG'));
+    </script>
+</body>
+
+</html> -->
 
 
+<!-- 다른 풀이  -->
 
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+        // 뒤집어도 같은 문자열이면 'YES'출력 아니면 'NO'출력
+
+        const solution = (s) => {
+
+            let answer = 'YES'
+        
+            s= s.toLowerCase()
+            let len = s.length
+
+            //문자열의 반 만큼만 loop // 홀수일경우 가운데 문자는 비교할 필요없다
+            for( let i = 0; i<Math.floor(len/2);i++){
+                // 문자열을 앞뒤로 하나씩 비교 해준다
+                if(s[i] !== s[len-i-1]) return 'NO'
+
+            }
+
+            return answer
+        }
         console.log(solution('gooG'));
     </script>
 </body>
