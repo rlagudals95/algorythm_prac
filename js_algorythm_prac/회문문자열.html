@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+        // 뒤집어도 같은 문자열이면 'YES'출력 아니면 'NO'출력
+       
+        const solution = (s) => {
+
+            let answer = ''
+            let reverse = ''
+            let j = 1;
+            for (let i = 0; i < s.length; i++){
+                answer = answer + s[i]
+                reverse = reverse + s[s.length- j]
+                j++
+            }
+       
+            if(answer.toLowerCase() === reverse.toLowerCase()) answer = 'YES'
+            else answer = 'NO'
+
+            return answer
+        }
+
+
+
+        console.log(solution('gooG'));
+    </script>
+</body>
+
+</html>
