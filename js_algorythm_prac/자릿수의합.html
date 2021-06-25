@@ -1,0 +1,89 @@
+ <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+
+    <body>
+        
+        <script>
+            // 자릿수를 다 더해서 가장 큰 수를 출력하는 프로그램
+            // 단 자릿수를 다 더해서 가장 큰 수가 2개 이상일땐 원래 자릿수를 더하기 전 더 큰수가 answer
+            const solution = (arr) => {
+                
+    
+                let answer
+                let j = 0;
+                let sum =[];
+                let c = 0
+                let idxs = []
+                let max 
+
+                let maxChk = arr.length; 
+                while (c < arr.length) {
+                    sum[j] = 0
+                    i = 0;
+                    for (let i = 0; i < arr[c].toString().length; i++){
+                     // console.log(arr[c].toString().length);
+                     sum[j] += parseInt(arr[c].toString()[i]) 
+                     //  console.log(arr[c].toString()[i])
+                    }
+                    
+                    c++
+                    j++
+                }
+               
+                
+                console.log(c);
+                console.log(sum);
+
+
+                let idx = sum.findIndex((n)=> {
+                   return  n === Math.max.apply(null, sum)
+                })
+                max = Math.max.apply(null, sum)
+                idxs.push(idx)
+                sum.splice(idx,1)
+                
+                // 큰 숫자가 있나 검사
+
+                for (let q = 0; q < sum.length; q++){
+                if(sum.includes(max)) {
+                    let idx = sum.findIndex((n) => {
+                        return n === Math.max.apply(null, sum)
+                    })
+                    max = Math.max.apply(null, sum)
+                    idxs.push(idx)
+                    sum.splice(idx, 1)
+                    
+                 } 
+                 }
+                
+                console.log('큰 숫자idx',idxs); 
+                //console.log('자릿수 더한 배열',sum);
+                //console.log('제일큰수',max);
+                console.log(arr[idxs[0]])
+                console.log(arr[idxs[1]])
+
+              
+
+                for (let z = 0; z < idxs.length; z++){
+                     answer = arr[idxs[z]]
+                    if (answer < idx[z]) answer = idx[z]
+                
+                }
+
+                return answer
+            }
+
+    
+            let arr = [128, 460, 603, 40, 521, 137,123]
+            console.log(solution(arr));
+
+
+
+
+        </script>
+    </body>
+
+    </html>
