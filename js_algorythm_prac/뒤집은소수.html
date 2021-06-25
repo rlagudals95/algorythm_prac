@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+        // 주어진 자연수를 뒤집고 그 수가 소수면 출력하는 프로그램을 작성하시오
+        const solution = (arr) => {
+
+            let answer = []
+            let r = [];
+            let word =""
+            //let j = 2;
+            let cnt = 0
+
+            for (let i =0; i < arr.length; i++){
+                let num = parseInt(arr[i].toString().split("").reverse().join(''))
+                for (let j = 2; j < num-1; j++){
+                    console.log(j);
+                    if(num%j ===0) {
+                        j = 2
+                        return
+                    }
+                     answer.push(num)
+                }              
+
+
+
+                //console.log(parseInt(arr[i].toString().split("").reverse().join('')));
+            }    
+
+            return answer
+        }
+
+        let arr = [32,55,62,20,250,370,200,30,100]
+        console.log(solution(arr));
+
+    </script>
+</body>
+
+</html>
