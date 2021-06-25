@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+        // 문자가 반복될경우 반복횟수를 문자 옆에 표기해서 리턴해라
+        const solution = (str) => {
+
+            let answer = "";
+            let cnt = 1
+
+            for (let i =0; i < str.length; i++){
+                
+                if(str[i] === str[i+1]){
+                    cnt++
+                    console.log('같노!');
+                    console.log(cnt);
+                } else {
+                    answer += str[i]
+                    answer += cnt
+                    cnt = 1;
+                }
+            }    
+
+            return answer.replace(/1/gi, "")
+        }
+
+        let str = 'KKHSSSSSSSE'
+        console.log(solution(str));
+
+    </script>
+</body>
+
+</html>
