@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // 문자 e 와 떨어진 최소거리를 출력하는 프로그램을 작성하라
+        // 10121012210이 출력되어야 한다
+      
+        const solution = (str,e) => {
+      
+            let answer = []
+            let p = 1000;
+           
+            for (let i = 0; i < str.length; i++){
+                if(str[i] !== e) {
+                    p += 1
+                    answer.push(p)
+                } else {
+                    p = 0;
+                    answer.push(p)
+                }
+            } 
+           
+
+            p = 1000;
+            // 10121012210이 출력되어야 한다
+            for (let j =answer.length-1 ; j >= 0; j--){
+                if(answer[j] === e){
+                    p = 0;
+                    answer.push(p)
+                } else {
+                    p++;
+                    // p = 1 
+                    answer[j] = Math.min(answer[j], p)
+                    answer.push(answer[j])
+            }
+            
+            console.log(answer);
+            //str = str.replace(/e/g, 0) e도 0으로 모두 바꿔준다
+         
+            return 
+        }
+    }
+        let s = 'teachermode'
+        console.log(solution(s,'e'));
+
+    </script>
+</body>
+
+</html>
