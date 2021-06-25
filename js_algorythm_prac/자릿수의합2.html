@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+        // 자릿수를 다 더해서 가장 큰 수를 출력하는 프로그램
+        // 단 자릿수를 다 더해서 가장 큰 수가 2개 이상일땐 원래 자릿수를 더하기 전 더 큰수가 answer
+        const solution = (arr) => {
+
+            let answer , max =Number.MIN_SAFE_INTEGER // 작은 숫자로 MAX 지정
+
+            for (x of arr){
+                let sum = 0, tmp = x; // 임시변수 tmp에 x 선언
+
+                while(tmp){
+                    sum+=(tmp%10); // 1의자리 더해줌 // 10 의자리 + // 100의 자리 +
+                    tmp = Math.floor(tmp/10) // 1의 자리 제외 => 10의 자리 제외
+
+                }
+                console.log(sum);
+                if (sum > max){
+                    max = sum; // 큰 숫자를 찾아냄
+                    answer = x // x 가 숫자원본
+                } else if (sum === max) { // 같은게 발견 됐다면?
+                    if( x > answer ) answer = x
+                }
+            }
+           
+
+            // for of 를 이용해 x 원본 숫자따로 자릿수를 더한 tmp 값을 따로 선언해서 
+            // 큰 수를 찾아 낸뒤 같은 값이 있나 검사하고 원본 숫자를 answer 로 리턴해줌
+            // x 와 tmp는 항상 짝이 되어 loop를 돈다
+            // let sum = x.toString().split('').reduce((a,b)=> a+b, 0) 이런식으로 하는 방법도 있다!
+            return answer 
+        }
+
+
+        let arr = [128, 460, 603, 40, 521, 137, 123]
+        console.log(solution(arr));
+
+
+
+
+    </script>
+</body>
+
+</html>
