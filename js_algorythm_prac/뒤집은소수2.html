@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+
+        // 소수는 해당수의 약수를 보면 알 수 있다
+        // 어떤 수 던지 1과 자기자신을 제외한 가장큰 약수는 그 수의 절반 
+        // 절반만 loop를 돌려도 된다
+        const isPrime = (num) => {
+            if(num===1) return false
+            // 루트 정수 까지만 돌아도 된다
+            for (let i = 2; i <=parseInt(Math.sqrt(num)) ; i++){ // 절반 만큼만 loop
+                if(num % i === 0) return false
+                return true
+            }
+        }
+
+        // 주어진 자연수를 뒤집고 그 수가 소수면 출력하는 프로그램을 작성하시오
+        const solution = (arr) => {
+            let answer = []
+
+            for (let x of arr){
+                let res = 0; // 숫자를 뒤집어 더해줄 곳
+
+                while(x){ // x가 0이 될때 까지
+                    let t = x%10 // 1의 자리 2 // 3%10 = 0
+                    
+                    res = res*10 + t// res = 0*10 + 2 = 2 // 2*10 + 3
+                    x =  parseInt(x/10) //10의 자리 3
+                }
+                if(isPrime(res)){
+                    answer.push(res)
+                }
+            
+            }
+
+            return answer
+        }
+
+
+        let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100]
+        console.log(solution(arr));
+
+    </script>
+</body>
+
+</html>
