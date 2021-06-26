@@ -15,26 +15,48 @@
             let r = [];
             let word =""
             //let j = 2;
-            let cnt = 0
-
+         
+            let d = []
+            let idx
+            let idxs =[]
             for (let i =0; i < arr.length; i++){
                 let num = parseInt(arr[i].toString().split("").reverse().join(''))
-                for (let j = 2; j < num-1; j++){
-                    console.log(j);
-                    if(num%j ===0) {
-                        j = 2
-                        return
-                    }
-                     answer.push(num)
-                }              
+                r.push(num)
+            }  
+            
+            console.log(r);
 
+            for( let x of r ){
+                for (let j = 2; j < x; j++){
+                    if(x!==2 && x%j ===0) {
+                        d.push(x)
+                        idx = r.findIndex(g => g === x ) // findIndex {}로 감싸면 안된다..
+                        console.log(idx);
+                        idxs.push(idx)
+                }
+               }        
+            }
+          
+            let set = new Set(idxs)
+            let setIdx = [...set]
+            let setCnt = setIdx.length
+            let l = 0
+            let m = 0;
 
-
-                //console.log(parseInt(arr[i].toString().split("").reverse().join('')));
-            }    
-
+            // 소수들을 지워준다
+            while(setCnt > 0){
+                // splice로 다수의 값들을 지울때 앞의 요소가 지워진다면 
+                // 지우려는 요소가 앞으로 당겨져 idx순서도 1씩 줄여줘야 한다
+                r.splice(setIdx[l]-m,1)
+                m++
+                l++
+                setCnt--
+            }
+          
             return answer
-        }
+       
+    }
+    
 
         let arr = [32,55,62,20,250,370,200,30,100]
         console.log(solution(arr));
