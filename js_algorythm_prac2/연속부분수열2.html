@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        const solution = (arr) => {
+
+            let answer = 0;
+            let lt = rt = 0
+            let target = 5;
+           
+            let sort = arr.sort((a,b)=> a-b)
+            let sum = sort[0]
+            let Narr = Array.from(sort)
+            
+
+
+            for (let i = 0 ; i < sort.length; i++){
+                
+                if(sort[i] <= 5) answer++
+
+                while (lt < sort.length) {
+
+                    sum += Narr[lt]
+                    
+                    if(sum <= target){
+                        answer++
+                    } else {
+                        sum = 0
+                        Narr.shift()
+                        //lt = 0
+                        console.log(lt);
+                        lt--
+                    }
+                    lt++
+                    //console.log(lt);
+                }
+            }
+            
+            return answer
+        }
+
+        let arr = [1, 3, 1 ,2, 3]
+        console.log(solution(arr));
+
+    </script>
+</body>
+
+</html>
