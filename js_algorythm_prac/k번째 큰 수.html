@@ -1,0 +1,60 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+
+        // arr 에 있는 숫자중 3개를 뽑아 더한 수중 3번째로 큰 수를 출력하는 프로그램을 구현하라
+        // 숫자 3개를 뽑은 경우의 수를 모두 비교해줘야한다
+        const solution = (arr) => {
+            let answer
+      
+            let tmp = new Set()
+            let len = arr.length
+
+         
+
+           
+        
+            for (let i = 0; i < len; i++){
+             
+                for (let j = i+1; j < len; j++){
+
+                      for (let k = j+1; k < len; k++) {
+
+                        // 3씩 뽑아 더한 모든 경우의 수
+                        tmp.add(arr[i] +arr[j]+arr[k])
+
+                       // console.log('i',arr[i],'j', + arr[j],'k', + arr[k]);
+                    }
+                } 
+                
+            }
+
+            let a = Array.from(tmp).sort((a,b)=> b-a)
+            let list = [...tmp].sort((a,b)=> b-a)
+           
+                
+            answer = list[2]
+
+            console.log('a',a);
+            console.log('tmp',list);
+            return answer
+        }
+
+        let arr = [13,15,34,23,45,65,33,11,26,42]
+
+        console.log(solution(arr));
+
+
+
+
+    </script>
+</body>
+
+</html>

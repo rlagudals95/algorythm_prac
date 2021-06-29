@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+        // 선물을 최대한으로 많이 살 수 있는 경우는?
+       const solution = (product, m) => {
+            let answer = 0;
+        
+            n = product.length
+            
+            product.sort((a,b)=> (a[0]+a[1]) - (b[0]+b[1])) //가격 + 택배비 오름 차순 
+
+            for (let i = 0; i < n; i++){
+                let money = m - (product[i][0]/2 + product[i][1]) //할인받은 상품을 사고 남은돈
+                let cnt = 1;
+                for (let j = 0; j < n; j++){
+                    // 사려는 상품이 남은 예신보다 크다면 break
+                    if(j !== i && (product[j][0] + product[j][1])> money) break
+                    //i는 할인 받은 상품이므로 j 와 같으면 안된다
+                    // 남은 예산보다 작거나 같아야 상품을 살 수 있다!
+                    if(j!==i && (product[j][0]+ product[j][1]) <= money){
+                        money -= (product[j][0] + product[j][1])
+                        cnt++
+                    }
+                }
+                answer = Math.max(answer, cnt)
+            }         
+            return answer
+        }
+
+        let s = [
+            // //[선물가격, 배송비]
+            [6, 6],
+            [2, 2],
+            [4, 3],
+            [4, 5],
+            [10, 3]
+        ] 
+        // 현재 예산 28
+        // 선물 가격 50% 할인 쿠폰 1개 소지중
+        console.log(solution(s, 28));
+
+
+    </script>
+</body>
+
+</html>
