@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+        const solution = (m, arr) => {
+
+        
+            let answer = 0, lt = 0, sum = 0;
+            
+
+            for (let rt = 0; i <arr.length; i++ ){
+                sum += arr[rt]
+                // sum 이 목표숫자인지 확인
+                if(sum === m) answer++
+                // 합이 목표 숫자보다 크거나 같다면?
+                while(sum >= m) {
+                // 현재 sum이 6을 넘은 시점에 앞으 값들을 하나씩뺸다
+                // 6이 될때까지    
+                    sum -= arr[lt++]
+                    if(sum===m) answer++
+                }
+            }
+
+
+            
+
+
+
+            return answer
+        }
+
+        let arr = [1, 2, 1, 3, 1, 1, 1, 2]
+        console.log(solution(6, arr));
+
+    </script>
+</body>
+
+</html>
