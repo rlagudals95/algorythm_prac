@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+
+        // 가장 많이 포함되있는 알파벳을 출력하라
+        // Map을 사용하면 key 와 value로 이루어진 객체가 생성된다
+        const solution = (s) => {
+            let answer 
+            let sh = new Map();
+
+            for (let x of s){
+                //sh에 x라는 키가 존재하냐?
+                //있다면 키값을 가져와서 기존 값에 +1을 해라
+                if(sh.has(x)) sh.set(x, sh.get(x)+1)
+                // 없다면 키값을 만들고 value는 1로 시작!
+                else sh.set(x,1)
+
+            }
+
+            let max = Number.MIN_SAFE_INTEGER // 엄청 작은숫자 설정 최대값을 찾기위해 
+          
+            //sh의 key와 value값이 key, val에 서로 대응
+            for (let [key, val] of sh){
+
+                if(val > max){
+                     max = val
+                     answer = key
+                }
+                //console.log(key,val);
+            }
+
+            return answer
+        }
+
+      
+        let arr = 'BACBACCACCBDEDE'
+        console.log(solution(arr));
+
+    </script>
+</body>
+
+</html>
