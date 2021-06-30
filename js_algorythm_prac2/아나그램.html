@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+
+
+        const solution = (arr1, arr2) => {
+            let answer
+           
+            let sh = new Map()
+            let sh2 = new Map()
+
+            for (x of arr1){
+             
+                if(sh.has(x)) sh.set(x, sh.get(x) + 1)
+                else sh.set(x,1)
+
+            }
+
+            for (x of arr2){
+                if (sh2.has(x)) sh2.set(x, sh2.get(x) + 1)
+                else sh2.set(x, 1)
+
+
+            }
+
+            for ([key, val]of sh){
+                 console.log(key, val);
+                 for ([key, val] of sh) {
+                    //
+                } 
+            }
+
+
+          
+            return answer
+        }
+
+
+
+        let arr1 = 'AbaAeCe'
+        let arr2 = 'baeeACA' 
+
+
+        console.log(solution(arr1, arr2));
+
+    </script>
+</body>
+
+</html>
