@@ -18,8 +18,9 @@
             for (let x of str2){
                 // Map 객체를 검사해 str2 에 key값이 없거나 있어도 0이면 'NO'
                  if (!sH.has(x) || sH.get(x) == 0) return "NO";
-                 sH.set(x, sH.get(x) - 1);
-                 
+                 // 음... 이밑에껀 왜하는지 사실 잘 모르겠다
+                sH.set(x, sH.get(x) - 1);
+     
             }
 
            

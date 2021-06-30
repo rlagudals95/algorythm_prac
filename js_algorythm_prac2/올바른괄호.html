@@ -1,0 +1,31 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        function solution(str) {
+            let answer 
+            let lt = rt = 0;
+
+            for (let i = 0; i < str.length; i++){
+                if(str[i] === '(') lt++
+                else rt++
+            }
+
+
+            if(lt === rt) answer = 'YES'
+            else answer ='NO'
+            return answer;
+        }
+
+        let str = '(())()'
+
+        console.log(solution(str));
+    </script>
+</body>
+
+</html>
