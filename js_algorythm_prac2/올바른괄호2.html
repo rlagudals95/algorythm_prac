@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // 이렇게 풀면 틀렸다 갯수가 같아도 짝이 다를 수 있음
+        function solution(str) {
+            let answer
+            let word  = []
+
+            for (let i = 0; i < str.length; i++){
+            
+                if(str[i]==='('){
+                    word.push(str[i])
+                } else if (word[word.length-1] ==='(' && str[i]===')'){
+                    word.pop()
+                }
+                
+            }    
+
+            console.log(word.length);
+            if(word.length === 0) answer = 'YES'
+            else answer = 'NO'
+            console.log(word);
+          
+            return answer;
+        }
+
+        let str = '(()(()))(()'
+
+        console.log(solution(str));
+    </script>
+</body>
+
+</html>
