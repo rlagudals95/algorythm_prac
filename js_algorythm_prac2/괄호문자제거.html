@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // () / 괄호로 감싸진 모든 문자를 제거해라
+        function solution(arr) {
+            let answer
+
+            let stack = []
+
+            for ( x of arr) {
+                
+                if(x === ')') {
+                    while(stack.pop() !=='(');
+                } else {
+                    stack.push(x)
+                }
+            }
+
+            answer = stack.join('')
+            console.log(stack);
+
+            return answer;
+        }
+
+       
+        let arr = '(A(BC)D)RF(G(H)(IJ)K)LM(N)'
+
+        console.log(solution(arr));
+    </script>
+</body>
+
+</html>
