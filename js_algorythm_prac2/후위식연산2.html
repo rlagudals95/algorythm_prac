@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        const solution = (s) => {
+            let answer
+            let calc
+            let stack = [];
+            let len = stack.length;
+
+            for (let i = 0; i < s.length; i++) {
+
+                if (!isNaN(x)) stack.push(Number(x))
+                else {
+                    // lt와 rt에 pop()한 두값을 할당해줘 더 코드가 간결
+                    let rt = stack.pop()// 맨뒤에서 첫번째
+                    let lt = stack.pop()// 맨뒤에서 두번째
+                    if (x === '-') stack.push(lt - rt)
+                    if (x === '+') stack.push(lt + rt)
+                    if (x === '*') stack.push(lt * rt)
+                    if (x === '/') stack.push(lt / rt)
+                    if (x === '%') stack.push(lt % rt)
+                }
+
+            }
+
+            answer = stack[0]
+
+            return answer
+        }
+
+
+        let arr = '352+*9-'
+        console.log(solution(arr));
+
+    </script>
+</body>
+
+</html>

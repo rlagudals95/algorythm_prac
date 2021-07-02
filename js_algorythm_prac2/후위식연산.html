@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        const solution = (s) => {
+            let answer
+            let calc
+            let stack = [];
+            let len = stack.length;
+
+            for (let i = 0; i < s.length; i++) {
+
+                if (isNaN(s[i])) { // 연산이 들어오면?
+                    //숫자 배열 뒤에서 두개를 연산해 pop()두번하고 stack에 넣어준다
+                    if (s[i] === '*') calc = stack[stack.length - 2] * stack[stack.length - 1]
+                    if (s[i] === '+') calc = stack[stack.length - 2] + stack[stack.length - 1]
+                    if (s[i] === '-') calc = stack[stack.length - 2] - stack[stack.length - 1]
+                    if (s[i] === '%') calc = stack[stack.length - 2] % stack[stack.length - 1]
+                    if (s[i] === '/') calc = stack[stack.length - 2] / stack[stack.length - 1]
+
+                    stack.pop()
+                    stack.pop()
+                    stack.push(calc)
+
+                }
+                else {
+                    //숫자는 그냥 stack에 넣어준다
+                    stack.push(parseInt(s[i]))
+                }
+            }
+
+            answer = stack[0]
+
+            return answer
+        }
+
+
+        let arr = '352+*9-'
+        console.log(solution(arr));
+
+    </script>
+</body>
+
+</html>
