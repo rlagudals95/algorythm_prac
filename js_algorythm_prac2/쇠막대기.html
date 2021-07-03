@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        const solution = (s) => {
+            let answer = 0;
+
+            let stack = []
+            for (let i = 0; i < s.length; i++) {
+                //console.log(s[i])
+                if (s[i] === '(' && s[i + 1] === ')') {
+                    console.log('레이저')
+                    answer += stack.length
+
+                }
+                else if (s[i] === '(' && s[i + 1] !== ')') {
+                    console.log('쇠막대기 첫부분')
+                    stack.push('(')
+                }
+                else if (s[i - 1] !== '(' && s[i] === ')') {
+                    console.log('쇠막대기 끝부분')
+
+                    answer += 1 //쇠막대가 더 이상 이어 지지 않으므로 끝부분을 +1
+                    stack.pop()
+                    // 제일 위의 쇠막대기 제외
+                }
+
+                console.log(stack)
+            }
+
+
+            return answer
+        }
+
+
+        //let arr = '()(((()())(())()))(())'
+        let arr = '(((()(()()))(())()))(()())'
+        console.log(solution(arr));
+
+    </script>
+</body>
+
+</html>
