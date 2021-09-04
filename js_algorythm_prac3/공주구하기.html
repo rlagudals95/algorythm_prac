@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+
+        // 연속 3일동안 매출이 최대인 
+        const solution = (n, k) => {
+
+            let answer = 0;
+            let cnt = 0;
+            let ps = [];
+
+            for (let i = 1; i < n + 1; i++) {
+                ps.push(i);
+            };
+            console.log('배열상태 1', ps)
+            while (ps.length > 1) {
+                console.log('배열상태', ps)
+                ps.push(ps[0]);
+                ps.shift();
+
+
+
+                if (cnt === 3) {
+                    //console.log('삭제되는 수', ps[0]);
+                    ps.shift();
+                    cnt = 0;
+                }
+
+                cnt++
+            };
+
+
+            console.log(ps);
+            answer = ps[0];
+            return answer
+        }
+
+        console.log(solution(8, 3));
+
+
+
+    </script>
+</body>
+
+</html>
