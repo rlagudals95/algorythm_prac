@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+
+        // 연속 3일동안 매출이 최대인 
+        const solution = (n, plan) => {
+            let answer = "YES";
+            let queue = n.split('');
+
+            // 필수 과목 포함여부와 맨앞을 비교하면 쉽게 풀 수 있다.
+
+            for (let x of plan) {
+                if (queue.includes(x)) {
+                    // 조건과 동시에 shift
+                    if (x !== queue.shift()) return "NO";
+                }
+            }
+
+            return answer
+        }
+
+        console.log(solution('CBA', 'CBDAGE'));
+
+
+
+    </script>
+</body>
+
+</html>
+
+
+<!-- for (let i = 0; i < arrN.length; i++) {
+    //console.log('i', i)
+    for (let j = 0; j < arrK.length; j++) {
+        //console.log('j', j)
+        if (arrN[i] === arrK[j]) {
+            console.log('같다', arrN[i], arrK[j])
+            arr.push(arrK[j]);
+            //arrK.shift();
+
+            break;
+
+        }
+        if (arrN[i] !== arrK[j]) {
+            console.log('다르네?', arrN[i], arrK[j])
+            //console.log('삭제되는 수', arrK[j]);
+            arrK.shift();
+        }
+    }
+} -->

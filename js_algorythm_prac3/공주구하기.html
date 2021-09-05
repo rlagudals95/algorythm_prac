@@ -20,19 +20,19 @@
             };
             console.log('배열상태 1', ps)
             while (ps.length > 1) {
-                console.log('배열상태', ps)
+                cnt++
+
                 ps.push(ps[0]);
                 ps.shift();
 
-
-
-                if (cnt === 3) {
-                    //console.log('삭제되는 수', ps[0]);
+                if (cnt === 2) {
+                    console.log('삭제되는 수', ps[0]);
+                    console.log('cnt', cnt);
                     ps.shift();
                     cnt = 0;
                 }
 
-                cnt++
+
             };
 
 
