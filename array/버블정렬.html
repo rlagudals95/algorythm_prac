@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 버블정렬
+        // 바로 오른쪽의 수와 비교를 해서 큰숫자를 맨뒤로 보냄
+        // 선택정렬보다 교환 횟수가 많다 
+        // 선택은 for문이 끝나고 나서 한번교환 버블은 계속 비교하면서 뒤로 보냄
+        function solution(arr) {
+            let answer = arr;
+            // i - 1만큼만 loop
+            // 한번 돌때마다 가장 큰 수를 뒤로 보낸다
+            for (let i = 0; i < arr.length - 1; i++) {
+                // 마지막 전까지 검사하므로 -1 만큼 그리고 가장큰 수가 맨뒤로 가므로 맨뒤까지 검사할 필요없으므로 -i 씩
+                for (let j = 0; j < arr.length - i - 1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                    }
+                }
+            }
+
+
+            return answer;
+        };
+
+        let arr = [13, 5, 11, 7, 23, 15];
+
+        console.log(solution(arr));
+
+    </script>
+</body>
+
+</html>
