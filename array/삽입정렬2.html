@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 삽입정렬이란?
+        // i값은 tmp에 임시저장
+        // i 이전의 값들을  j가 검사
+        // arr[j]가 tmp보다 크면 뒤쪽으로 복사!
+        function solution(arr) {
+            let answer = arr
+            let cnt = 0;
+            for (let i = 0; i < arr.length; i++) {
+                let tmp = arr[i]
+                let j// tmp에 현재 i의 값 저장
+                console.log('j', j);
+                for (j = i - 1; j >= 0; j--) { // j 가 0보다 작으면 break
+                    if (arr[j] > tmp) {
+                        arr[j + 1] = arr[j]; //앞의 수가 뒤에수 보다 크면 하나 뒤로 계속 복사한다.
+                    } else { // 앞의 수가 작다면 break 그리고 j 에서 멈춘다
+                        console.log('break')
+                        break;
+                    }
+                    cnt++
+                    console.log('cnt', cnt)
+                }
+                arr[j + 1] = tmp;
+
+            }
+
+            return answer;
+        };
+        // 5,5,6,6,9,9,11
+
+        let arr = [11, 7, 5, 6, 10, 9];
+
+        console.log(solution(arr));
+
+    </script>
+</body>
+
+</html>
