@@ -10,17 +10,48 @@
 
 <body>
     <script>
-        function solution(arr) {
-            let answer = arr
 
+        // 새로운 작업이 들어오면 작업은 오른쬭으로 밀리고
+        // arr 맨 오른쪽 작업(제일 오래된 작업)은 삭제
+        // 기존 작업중에 실행하는 작업이 있다면 그 작업을 맨앞으로 보내고 밀린다 (삭제되는 작업은 없음)
+
+        // cash의 기본 상태는 0으로 채워져 있다
+        // 같은 수의 작업이 있다면 빼고 앞으로 보내야 한다...!
+
+        // 결국 이중 for문으로 배열뒤에 같은 수가 있나 계속 확인
+        // 있다면 지워주고 배열 첫번째에 넣어준다..!
+        function solution(n, ws) {
+            let answer
+            //console.log
+            let cash = [];
+
+            for (let i = 0; i < ws.length; i++) {
+
+                for (let j = 0; j < cash.length; j++) {
+                    if (ws[i] == cash[j]) {
+                        cash.splice(j, 0);
+                    }
+                };
+
+                cash.unshift(ws[i]);
+                if (cash.length > n) {
+                    cash.pop();
+                }
+                // for (let j = we.length; j >= 0; j--) { //캐쉬 크기만큼 검사
+
+                // }
+            }
+
+            console.log('확인', cash)
+            answer = cash
 
             return answer;
         };
         // 5,5,6,6,9,9,11
 
-        let arr = [11, 7, 5, 6, 10, 9];
-
-        console.log(solution(arr));
+        let arr = [1, 2, 3, 2, 6, 2, 3, 5, 7];
+        let n = 5;
+        console.log(solution(n, arr));
 
     </script>
 </body>
