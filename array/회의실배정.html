@@ -16,14 +16,16 @@
         function solution(arr) {
             let answer = arr.length;
 
-            for (let i = 0; i < arr.length; i++) {
+            // for (let i = 0; i < arr.length; i++) {
 
-                for (let j = i + 1; j < arr.length; j++) {
-                    if (arr[i][0] > arr[j][0]) {
-                        [[arr[i], arr[j]] = [arr[j], arr[i]]]
-                    }
-                }
-            }
+            //     for (let j = i + 1; j < arr.length; j++) {
+            //         if (arr[i][0] > arr[j][0]) {
+            //             [[arr[i], arr[j]] = [arr[j], arr[i]]]
+            //         }
+            //     }
+            // }
+
+            // 오름차순으로 굳이 안해도 된다...?
             console.log('오름차순', arr);
 
             let j
@@ -42,7 +44,7 @@
 
         const arr = [[1, 4], [2, 3], [3, 5], [4, 6], [5, 7]]
         const arr2 = [[3, 3], [1, 3], [2, 3]]
-        console.log(solution(arr2));
+        console.log(solution(arr));
     </script>
 </body>
 
