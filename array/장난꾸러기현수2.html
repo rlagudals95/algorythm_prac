@@ -9,23 +9,30 @@
 </head>
 
 <body>
+    <!-- 강사님 풀이 -->
     <script>
-        // 학생등을 키순서대로 일렬로 세움, 키가 작은 순으로 번호를 부여
-        // 현수는 키가 크지만 앞번호를 받고 싶음
-        // 키순서대로 오름차순인 배열에서 모순이 있는 번호 idx를 출력하는 문제
-        // 버블정렬로 요소마다 비교해준다?
-        function solution(students) {
+        function solution(arr) {
             let answer = [];
 
+            // 먼저 복사 배열 저장 > 오름차순으로 sort
+            // 오름순 정렬과 원래 정렬을 비교해 다른 수를 answer에 push
+            let sortArr = arr.slice();
+            sortArr.sort((a, b) => a - b);
 
+            for (let i = 0; i < sortArr.length; i++) {
+                if (arr[i] !== sortArr[i]) {
+                    answer.push(i + 1)
+                }
+            }
 
+            console.log(sortArr)
             return answer;
         };
         // 152와 127이 바꾼것 같다...흠...
         // 뒷번호보다 크거나? 앞번호보다 작거나 한 수를 찾아라?
         let arr = [120, 125, 152, 130, 135, 135, 143, 127, 160];
         let arr2 = [120, 130, 150, 150, 130, 150]
-        console.log(solution(arr2));
+        console.log(solution(arr));
 
     </script>
 </body>
