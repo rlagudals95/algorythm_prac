@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 나의 풀이
+
+        // dvd의 크기는 최소 그리고 3개에 나눠 담어야한다
+        // dvd 수는 모두 같은 크기로
+
+        // 노래중 가장긴 노래는 최소 9 = lt 
+        // 노래길이를 다 더한값 45 = rt
+        // lt + rt/ 2 => 27 // dvd 2장에 노래를 담을 수 있음 (1,2,3,4,5,6)21 & (7,8,9)24 => 27은 답이 될 수 있다. 그러나 최소 용량은 아니다..!
+        // 이제 rt는 26(27-1)로 변환
+        // lt = 9 , rt = 26 => lt + rt = 35/2 => 17도 답이 될 수 있음
+        // lt 9 , rt 16 = 9+16/2 = 12
+        // lt = 9 rt = 12 => 7,8,9는 모두 같이 담을 수 없음 cd양이 늘어난다
+
+
+        function solution(m, songs) {
+            let answer;
+
+            let lt = Math.max(...songs);
+            let rt = 0;
+            let count = 0;
+
+            for (let x of songs) {
+                rt += x;
+            };
+
+            while (count != 3) {
+
+                let mid = parseInt((lt + rt) / 2);
+                // mid는 노래를 담을 수 있는 노래 크기
+                // 처음은 27 이 나온다 그렇다면 배열의 수들을 순차적으로 더하다 27이 넘게 되면 stop 그리고 cnt ++??
+                let sums = 0;
+                for (let i = 0; i < songs.length; i++) {
+                    if (sums + songs[i] > mid) {
+                        sums = 0;
+                        count++
+                    } else {
+                        sums += songs[i];
+                    }
+                }
+                sum = 0;
+                rt = mid - 1
+                answer = mid
+            }
+            return answer;
+        };
+
+        let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+        console.log(solution(3, arr));
+
+    </script>
+</body>
+
+</html>
