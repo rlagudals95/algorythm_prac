@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 나의 풀이
+
+        // dvd의 크기는 최소 그리고 3개에 나눠 담어야한다
+        // dvd 수는 모두 같은 크기로
+
+        // 노래중 가장긴 노래는 최소 9 = lt 
+        // 노래길이를 다 더한값 45 = rt
+        // lt + rt/ 2 => 27 // dvd 2장에 노래를 담을 수 있음 (1,2,3,4,5,6)21 & (7,8,9)24 => 27은 답이 될 수 있다. 그러나 최소 용량은 아니다..!
+        // 이제 rt는 26(27-1)로 변환
+        // lt = 9 , rt = 26 => lt + rt = 35/2 => 17도 답이 될 수 있음
+        // lt 9 , rt 16 = 9+16/2 = 12
+        // lt = 9 rt = 12 => 7,8,9는 모두 같이 담을 수 없음 cd양이 늘어난다
+
+        function count(songs, capacity) {
+            let cnt = 1, sum = 0; // 일단 dvd가 1한장은 필수 sum은 용량
+
+            for (let x of songs) {
+                if (sum + x > capacity) { // capacity = mid
+                    // capacity 용량을 넘기면 1장을 더 쓴다 cnt++ 그리고
+                    // 더해야할 다음 노래의 길이가 sum이 된다
+                    cnt++;
+                    sum = x;
+                } else {
+                    // mid = capacity 즉 현재 cd용량을 넘지 않는 다면 계속 ++
+                    sum += x;
+                }
+            }
+            return cnt;
+        };
+
+        function solution(m, songs) {
+            let answer;
+
+            let lt = Math.max(...songs); // 9
+            let rt = songs.reduce((a, b) => a + b, 0); // 45
+
+            while (lt <= rt) { // cnt 가 4가 되기전에 break
+                let mid = parseInt((lt + rt) / 2); // dvd 한장의 용량
+
+                if (count(songs, mid) <= m) {
+                    answer = mid
+                    rt = mid - 1;
+                } else {
+                    lt = mid + 1;
+                }
+            }
+
+            return answer;
+        };
+
+        let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+        console.log(solution(3, arr));
+
+    </script>
+</body>
+
+</html>
