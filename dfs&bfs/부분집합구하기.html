@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // 깊이탐색 종착점에 조건을 걸고 return!
+        // 자연수 n 이 주어지면 1부터 n까지의 원소를 갖는 집합의 부분집합을 모두 출력하는 프로그램을 작성하세요
+        // 부분집합은 2의 요소의 갯수제곱
+        // 1,2,3은 2의 3승으로 8 
+        // 해당 요소를 포함한다 안한다로 dfs 탐색
+        // 함수의 종착점은 d(4)일때 즉 최종까지 검사 하였을때 [0, ? , ? , ?] 이다.
+        //
+        function solution(n) {
+
+            let answer = [];
+            let ch = Array.from({ length: n + 1 }, () => 0); // [0,0,0,0]
+
+            // console.log('ch', ch)
+
+            function DFS(v) {
+
+                if (v === n + 1) { // d(4)가 종착점 // 끝까지 검사할 때 마다 push
+                    let tmp = "";
+                    for (let i = 1; i <= n; i++) {
+                        if (ch[i] === 1) {
+                            tmp += i + " ";
+                        }
+                    }
+                    if (tmp.length > 0) answer.push(tmp.trim());
+                } else {
+
+                    // ch 배열의 초기상태는 [0,0,0,0]이다
+                    // ch[v] = 1 이라는 것은 배열에 체크를 거는 것
+                    // ch[1] = 1 ..2..3 이렇게 체크를 걸면 [0,1,1,1](모두 포함한다는 가정하에)
+                    // D(4)는 v === n + 1 이 조건으로 인해 return
+                    // 그리고 [0,1,2,3] 배열에서 위의 반복문을 통해 1,2,3이 차례대로 더해지면 answer에 push
+                    ch[v] = 1; // 포함 된다 배열에 1로 체크
+                    DFS(v + 1); // 왼쪽으로 뻗음
+                    ch[v] = 0; // 포함안된다 배열에 0으로 체크
+                    DFS(v + 1); // 오른쪽으로 뻗음
+                }
+            }
+            DFS(1);
+
+            return answer;
+        }
+
+        console.log(solution(3));
+    </script>
+</body>
+
+</html>
