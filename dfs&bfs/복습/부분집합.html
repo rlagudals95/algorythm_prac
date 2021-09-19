@@ -1,0 +1,50 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+
+        function solution(n) {
+
+            let answer = [];
+            let ch = Array.from({ length: n + 1 }, () => 0); // [0,0,0,0]
+
+            // v = 1
+
+            // 깊이 설정 원소의 개수가 3개 니까 3으로 설정
+
+            function DFS(v) {
+
+                if (v === n + 1) { // 끝까지 탐색했을때
+                    let str = ""
+                    for (let i = 1; i <= n; i++) {
+                        if (ch[i] === 1) {
+                            str += i;
+                        }
+                    }
+                    answer.push(str);
+
+                } else {
+                    ch[v] = 1
+                    DFS(v + 1);
+                    ch[v] = 0;
+                    DFS(v + 1);
+
+                }
+
+
+            }
+            DFS(1);
+
+            return answer;
+        }
+
+        console.log(solution(3));
+    </script>
+</body>
+
+</html>
