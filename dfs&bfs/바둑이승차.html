@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+
+        function solution(w, arr) {
+
+            let answer
+            let flag = 0;
+            let n = arr.length;
+
+            let ws = [];
+
+            function DFS(L, sum) {
+                if (L === n) {
+                    //if(flag)
+                    if (sum <= w) ws.push(sum);
+
+
+                } else {
+                    DFS(L + 1, sum + arr[L]);
+                    DFS(L + 1, sum);
+                }
+            }
+
+
+            DFS(0, 0) // idx 값 0과 초기 배열총합 값 0
+
+            answer = Math.max(...ws);
+            return answer;
+        }
+        let arr = [81, 58, 42, 33, 61];
+
+        console.log(solution(259, arr));
+    </script>
+</body>
+
+</html>
