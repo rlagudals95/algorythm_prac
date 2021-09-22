@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+
+        function solution(arr) {
+
+            let answer, flag = 0;
+            let n = arr.length;
+
+            let problems = 5;
+            let time = 20;
+
+            let rs = [];
+
+            function DFS(L, sum, m) {
+                if (L === n) {
+
+                    if (m <= time) {
+                        rs.push(sum);
+                    }
+
+                } else {
+
+                    DFS(L + 1, sum + arr[L][0], m + arr[L][1]);
+                    DFS(L + 1, sum, m)
+
+                }
+            }
+
+
+            DFS(0, 0, 0)
+            console.log(rs)
+            console.log(Math.max(...rs));
+            return answer;
+        }
+        let arr = [[10, 5], [25, 12], [15, 8], [6, 3], [7, 4]];
+
+        console.log(solution(arr));
+    </script>
+</body>
+
+</html>
