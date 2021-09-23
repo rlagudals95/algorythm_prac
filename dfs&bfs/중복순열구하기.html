@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+
+        function solution(M,N) {
+            // N은 깊이
+            // depth 2로 정해 놓자
+            let answer;
+            let ch = Array.from({length:2});
+
+            console.log(ch);
+            let arr = [];
+            function DFS(L, N) { 
+                console.log('L',L)
+                if (L === 4){
+                   arr.push(ch);
+                } else {
+                   ch[L] = 1;     
+                   DFS(L+1);
+                   ch[L] = 2;
+                   DFS(L+1);
+                }
+            }
+            DFS(0,0); 
+            console.log(arr)
+            return answer;
+        }
+
+        solution(3,2);
+    </script>
+</body>
+
+</html>
