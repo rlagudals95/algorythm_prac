@@ -14,7 +14,7 @@
             // 3개로 갈라지는 dfs
             // 배열의 맨처음은 0
             let answer;
-            let ch = Array.from({ length: 3 });
+            let ch = Array.from({ length: M }, () => 0);
             console.log('M', M);
             //console.log(ch);
             let arr = [];
@@ -27,14 +27,19 @@
                     console.log('ch', ch)
                     arr.push(ch);
                     cnt++
-                    if (cnt === 2 ** M + 1) console.log(cnt);
+                    if (cnt === M * M) console.log(cnt);
                 } else {
-                    ch[L] = 1;
-                    DFS(L + 1);
-                    ch[L] = 2;
-                    DFS(L + 1);
-                    ch[L] = 3;
-                    DFS(L + 1);
+
+                    for (let i = 0; i < M; i++) {
+                        ch[L] = i + 1;
+                        DFS(L + 1);
+                    }
+                    // ch[L] = 1;
+                    // DFS(L + 1);
+                    // ch[L] = 2;
+                    // DFS(L + 1);
+                    // ch[L] = 3;
+                    // DFS(L + 1);
                 }
             }
 
