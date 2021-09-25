@@ -8,31 +8,42 @@
 <body>
     <script>
 
-        function solution(M,N) {
+        function solution(M, N) {
             // N은 깊이
             // depth 2로 정해 놓자
+            // 3개로 갈라지는 dfs
+            // 배열의 맨처음은 0
             let answer;
-            let ch = Array.from({length:2});
-
-            console.log(ch);
+            let ch = Array.from({ length: 3 });
+            console.log('M', M);
+            //console.log(ch);
             let arr = [];
-            function DFS(L, N) { 
-                console.log('L',L)
-                if (L === 4){
-                   arr.push(ch);
+            let cnt = 0;
+            DFS(1);
+            function DFS(L) {
+
+                if (L === M) {
+                    ch.shift()
+                    console.log('ch', ch)
+                    arr.push(ch);
+                    cnt++
+                    if (cnt === 2 ** M + 1) console.log(cnt);
                 } else {
-                   ch[L] = 1;     
-                   DFS(L+1);
-                   ch[L] = 2;
-                   DFS(L+1);
+                    ch[L] = 1;
+                    DFS(L + 1);
+                    ch[L] = 2;
+                    DFS(L + 1);
+                    ch[L] = 3;
+                    DFS(L + 1);
                 }
             }
-            DFS(0,0); 
-            console.log(arr)
+
+
+
             return answer;
         }
 
-        solution(3,2);
+        solution(3, 2);
     </script>
 </body>
 
