@@ -1,0 +1,45 @@
+function DFS(L, sum) {<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+
+        function solution(m, arr) {
+
+            let answer = [];
+            n = arr.length;
+            let ch = Array.from({ length: n }, () => 0); // 3
+            let tmp = Array.from({ length: m }, () => 0); // 2 
+
+            function DFS(L) {
+                if (L === m) {
+                    answer.push(tmp.slice()); //slice깊은복사
+                } else {
+                    for (let i = 0; i < n; i++) {
+                        console.log('ch', ch)
+                        if (ch[i] === 0) { // 중복원소 체크 및 제거
+                            //console.log('ch2', ch)
+                            ch[i] = 1; // dfs 가지를 뻗을때 해당원소 사용여부 체크
+                            tmp[L] = arr[i]
+                            DFS(L + 1);
+                            ch[i] = 0; // 체크 해제
+                            // ch가 체크된 체로 끝까지 탐색하고 다시 돌아와 다른 쪽으로 가지를 칠때 ch에 체크해제
+                        }
+                    }
+                }
+            }
+            DFS(0);
+
+            return answer;
+        }
+
+        let arr = [3, 6, 9];
+        console.log(solution(2, arr));
+    </script>
+</body>
+
+</html>

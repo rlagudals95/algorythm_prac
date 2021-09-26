@@ -1,0 +1,45 @@
+function DFS(L, sum) {<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+
+        function solution(N, M, arr) {
+
+            let ch = Array.from({ length: M }, () => 0);
+            let tmp = Array.from({ length: N }, () => 0);
+            let len = arr.length;
+            let cnt = 0;
+
+            function DFS(L, sum) {
+                if (L === M) {
+                    let setCnt = 0;
+
+                    if (setCnt != 1) {
+                        console.log(ch);
+                        cnt++
+                        console.log(cnt)
+                    }
+                } else {
+                    for (let i = 0; i < len; i++) {
+
+                        ch[L] = arr[i]
+                        DFS(L + 1);
+                    }
+                }
+            }
+            DFS(0);
+
+            return answer;
+        }
+
+        let arr = [3, 6, 9];
+        console.log(solution(3, 2, arr));
+    </script>
+</body>
+
+</html>
