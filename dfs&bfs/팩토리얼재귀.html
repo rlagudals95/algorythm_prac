@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // 재귀함수 대신 for문을 이용....
+        function solution(N) {
+
+            let answer = N;
+            let M = N;
+            //let sum = 1;
+
+            const DFS = (N,M) => {
+                console.log('N', N,'M', M )
+                if (N === 1) {                  
+                    console.log(M)
+                    answer = M;
+                } else {                                      
+                    DFS(N-1,M*(N-1));  
+                }
+
+            };
+
+            DFS(N,N)
+
+
+            return answer;
+        }
+
+        console.log(solution(5));
+    </script>
+</body>
+
+</html>
