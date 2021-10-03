@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // 가장윗줄의 숫자의 수와 가장 아래의 수가 주어진다..
+        // 2개의 dfs로 계속 탐색..!
+        // 트리를 그려보면
+        // 1,2,3,4 인 경우 1C0 + 2C2, 3C2, 4C0이런식으로 공식이 나온다
+        // 위에것은 아님... 양쪽 제외한 가운데 수들에 *N-1 씩곱해서 총합계산
+        function solution(N,F) {
+
+            let answer = []
+            let ch = Array.from({length: N}, () => 0) 
+            let tmp = Array.from({length: N}, () => 0) //중복체크
+            console.log(ch)
+
+            let fm;
+            let m = 0; // 총합
+
+
+            let test
+            let flag = 0;
+
+            let resultArr = []
+            console.clear();
+            function DFS(L) {        
+
+
+               if (L === N  && !flag){
+                //console.log(ch)
+                // 양쪽을 제외한 가운데 수들의 팩토리얼 n-1
+                
+                    for(let i = 1; i < N-1; i++){ 
+                        m += ch[i]*3;
+                    }
+                    
+                    m = m + ch[0] + ch[ch.length-1];
+                    console.log('flag',flag)
+                    if( m === F ){
+                       
+                        answer.push(...ch)                  
+                        flag = 1
+                        return
+                        
+                    } else {
+                        m = 0;
+                    }
+               } else {
+
+                for(let i = 1; i < N+1; i++){        
+                    if(tmp[i-1] === 0){ // 중복순열 제거
+                        tmp[i - 1 ] = 1;
+                        ch[L] = i;
+                        DFS(L + 1)
+                        tmp[i - 1] = 0;
+                    }                
+                }                                  
+               }
+            }
+            
+            DFS(0);
+
+            return answer;
+        }
+
+        console.log(solution(4, 16));
+    </script>
+</body>
+
+</html>
