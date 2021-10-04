@@ -1,0 +1,50 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // 문제 설명 5개의 정수가 주어지고 
+        // 그 중 3개의 정수를 뽑아 더했을때 6의 배수가 되는 경우의 수를 구하시오
+        // 순열의 중북체크
+        // 배수체크 M으로 나눴을때 0이 나오면 true
+        // dfs 깊이는 K
+        // N은 필요가 있나???..
+        // 순서에 상관없이 배열안의 원소가 같은 경우는 경우의 수에서 제외....
+        function solution(N, K, arr, M) {
+
+            let answer = 0;
+            let tmp = Array.from({ length: K })
+
+            function DFS(L, s, sum) {
+                if (L === K) {
+                    if (sum % M === 0) answer++
+                    console.log(sum, tmp)
+
+                } else {
+                    for (let i = s; i < N; i++) {
+                        tmp[L] = arr[i]
+                        // 이렇게 해주면 tmp의 배열이 순서도 중복되지 않음
+                        DFS(L + 1, i + 1, sum + arr[i])
+                    }
+                }
+
+
+            }
+
+            DFS(0, 0, 0)
+
+
+            return answer;
+        }
+
+        let arr = [2, 4, 5, 8, 12]
+
+        console.log(solution(5, 3, arr, 6));
+    </script>
+</body>
+
+</html>
