@@ -1,0 +1,33 @@
+function DFS(L, sum) {<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // 재귀함수 대신 for문을 이용....
+        function solution(n) {
+
+            let answer;
+
+            function DFS(n) {
+                if (n === 1) return 1;
+                else return n * DFS(n - 1);
+            }
+            // n === 1일때 return 한다
+            // return값이 n * DFS(n-1)
+            // >> DFS(5), 4,3,2.. 이렇게 스택에 쌓이고
+            // 1이되면 return 되어 stack에서 pop되면서
+            // 1*2 , 2*3 , 3*4 ....
+
+            answer = DFS(n);
+            return answer
+        }
+
+        console.log(solution(5));
+    </script>
+</body>
+
+</html>

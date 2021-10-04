@@ -1,0 +1,39 @@
+function DFS(L, sum) {<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // 재귀함수 대신 for문을 이용....
+        function solution(N) {
+
+            let answer
+            let t = N;
+
+            function DFS(L, p) {
+
+                if (L === N - 1) {
+
+                    answer = p;
+                } else {
+                    //console.log('?', L)
+
+                    t--
+                    DFS(L + 1, p * t)
+                    // 5*4 / 20*19
+                }
+            }
+
+            DFS(0, 5)
+
+            return answer;
+        }
+
+        console.log(solution(5));
+    </script>
+</body>
+
+</html>
