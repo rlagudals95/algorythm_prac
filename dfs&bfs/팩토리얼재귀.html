@@ -1,39 +1,53 @@
-function DFS(L, sum) {<html>
+<<<<<<< HEAD function DFS(L, sum) {<html>
+    =======
+    <html>
+    >>>>>>> 085fb9743eb34e0f2f6111bc65f4a3d5558075e3
 
-<head>
-    <meta charset="UTF-8">
-    <title>출력결과</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
 
-<body>
-    <script>
-        // 재귀함수 대신 for문을 이용....
-        function solution(N) {
+    <body>
+        <script>
+            // 재귀함수 대신 for문을 이용....
+            function solution(N) {
 
-            let answer
-            let t = N;
+                let answer = N;
+                let M = N;
+                //let sum = 1;
 
-            function DFS(L, p) {
+                const DFS = (N, M) => {
+                    console.log('N', N, 'M', M)
+                    if (N === 1) {
+                        console.log(M)
+                        answer = M;
+                    } else {
+                        DFS(N - 1, M * (N - 1));
+                    }
 
-                if (L === N - 1) {
+                };
 
-                    answer = p;
-                } else {
-                    //console.log('?', L)
-
-                    t--
-                    DFS(L + 1, p * t)
-                    // 5*4 / 20*19
+                // 아래처럼 표현가능
+                function solution(n) {
+                    let answer;
+                    function DFS(n) {
+                        if (n === 1) return 1;
+                        else return n * DFS(n - 1);
+                    }
+                    answer = DFS(n);
+                    return answer;
                 }
+
+                console.log(solution(5));
+                DFS(N, N)
+
+
+                return answer;
             }
 
-            DFS(0, 5)
+            console.log(solution(5));
+        </script>
+    </body>
 
-            return answer;
-        }
-
-        console.log(solution(5));
-    </script>
-</body>
-
-</html>
+    </html>

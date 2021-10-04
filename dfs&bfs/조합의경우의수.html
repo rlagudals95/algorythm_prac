@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // 팩토리얼은 -- 가 아닌 ++ 조건으로
+        // q 값이 팩토리얼 숫자에 도달하면 값을 메모이 제이션
+        // q 값이 제일큰 숫자인 n에 도달하면 공식계산 answer return 
+        function solution(n,r) {
+
+            let answer ;
+            let p = n - r;
+
+            let rs;
+            let ps;
+
+            function DFS(q,m){
+
+               if(q === r) rs = m;
+               if(q === p) ps = m;
+              
+               if (q === n) {
+                  answer = m/(rs*ps);
+                  return
+                   
+               } else {
+                    DFS(q + 1, m*(q+1))
+               } 
+
+            }
+
+            DFS(1,1);
+
+            return answer;
+        }
+
+        console.log(solution(33,19));
+    </script>
+</body>
+
+</html>
