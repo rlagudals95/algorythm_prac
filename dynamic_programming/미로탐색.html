@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // dfs 깊이가 도달할떄 cnt의 갚
+        // x, y 값 4방향으로 이동가능함을 고려
+        // 4방향 좌표 (-1,0), (0,1), (1,0), (0,-1) 4갈래로 dfs탐색
+        function solution(board) {
+            let answer = 0;
+           
+            let dx = [-1,0,1,0];
+            let dy = [0,1,0,-1];
+ 
+            function DFS(x,y) {     
+                if (x === 6 && y === 6) { //(6,6)
+                    answer++
+                } else {          
+                    for (let k = 0; k < 4; k++){ // 4방향 탐색
+                        let nx = x+dx[k]; // 다음좌표들
+                        let ny = y+dy[k];
+                        if(nx >= 0 && nx <= 6 && ny>= 0 && ny <= 6 && board[nx][ny] === 0){// 미로밖으로 좌표가 나가지않게
+                            board[nx][ny] = 1;
+                            DFS(nx,ny)
+                            board[nx][ny] = 0; // 뒤로 back으로 체크 풀어줌
+                        }
+                        
+                    }
+                    
+                }
+            }
+            board[0][0] = 1; 
+            DFS(0,0)
+            return answer;
+
+        }
+
+        let arr = [
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 1, 1, 1, 1, 1, 0],
+            [0, 0, 0, 1, 0, 0, 0],
+            [1, 1, 0, 1, 0, 1, 1],
+            [1, 1, 0, 0, 0, 0, 1],
+            [1, 1, 0, 1, 1, 0, 0],
+            [1, 0, 0, 0, 0, 0, 0]
+        ];
+        // 5개의 vertex와 간선정보
+        console.log(solution(arr));
+    </script>
+</body>
+
+</html>

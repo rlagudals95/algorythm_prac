@@ -19,32 +19,36 @@
             let graph = Array.from(Array(n + 1), () => Array());
             let ch = Array.from({ length: n + 1 }, () => 0);
             //console.log('ch', ch);
+            let path = []
             for ([a, b] of arr) {
-                console.log('a,b',a,b);
-                graph[a].push(b)
+                //console.log('a,b',a,b);
+                graph[a].push(b) // 인접리스트 생성
             }
 
-            console.log('graph',graph)
+            //console.log('graph',graph)
 
             function DFS(v) {
                 //console.log(v);
-                console.log('???', graph[v])
+                //console.log('???', graph[v])
                 if (v === n) {
-                    console.log('!!!!',graph[v])
+                    //console.log('!!!!',graph[v])
                     answer++;
+                    console.log('path', path); //경로
                 } else {
-                    for (let nv of graph[v]) {
+                    for (let i = 0; i <  graph[v].length; i++) {
                         //console.log('vv',graph[v])
-                        if (ch[nv] === 0) {
-                            //path.push(nv);
-                            ch[nv] = 1;
-                            DFS(nv);
-                            ch[nv] = 0;
-                            //path.pop();
+                        if (ch[graph[v][i]] === 0) { // 정점의 번호로 ch
+                            path.push(graph[v][i]);
+                            
+                            ch[graph[v][i]] = 1;
+                            DFS(graph[v][i]);
+                            ch[graph[v][i]] = 0; 
+                            path.pop();
                         }
                     }
                 }
             }
+            
             ch[1] = 1;
             DFS(1)
             return answer;
