@@ -16,45 +16,39 @@
 
         function solution(n, arr) {
             let answer = 0;
-            // 길이가 6인 배열을 6개의 0이 들어있는 배열을 넣어 생성
-            // 1번 idx부터 사용하므로 n+1개로 생성
-            let graph = Array.from(Array(n + 1), () => Array(n + 1).fill(0))
-
+            let graph = Array.from(Array(n + 1), () => Array());
             let ch = Array.from({ length: n + 1 }, () => 0);
-            let path = []
-
-            for (let [a, b] of arr) {
-                //console.log(a, b);
-                graph[a][b] = 1; // 2차원 그래프에 1로 check
+            //console.log('ch', ch);
+            for ([a, b] of arr) {
+                console.log('a,b',a,b);
+                graph[a].push(b)
             }
 
+            console.log('graph',graph)
+
             function DFS(v) {
-
-                if (v === n) { // 5까지 탐색인 된 경우(방문한 경우)
-
-                    answer++
-                    console.log(path);
+                //console.log(v);
+                console.log('???', graph[v])
+                if (v === n) {
+                    console.log('!!!!',graph[v])
+                    answer++;
                 } else {
-                    for (let i = 1; i <= n; i++) {
-                        // graph에 서로 연결이 되있는 간선 && 체크한(지나온) 노드인가 확인
-                        if (graph[v][i] === 1 && ch[i] === 0) {
-                            ch[i] = 1; // 방문 체크
-                            //path.push(i); // console
-                            DFS(i);
-                            ch[i] = 0;
-                            //path.pop();// 방문 return한 노드 제거
+                    for (let nv of graph[v]) {
+                        //console.log('vv',graph[v])
+                        if (ch[nv] === 0) {
+                            //path.push(nv);
+                            ch[nv] = 1;
+                            DFS(nv);
+                            ch[nv] = 0;
+                            //path.pop();
                         }
                     }
                 }
             }
-            path.push(1);
-            ch[1] = 1; // 1번 노드는 시작점이므로 기본으로 방문처리
+            ch[1] = 1;
             DFS(1)
-
-
-            //console.log(graph)
-
             return answer;
+
         }
 
         let arr = [
