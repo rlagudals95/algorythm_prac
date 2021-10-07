@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+        // 6,5,10   
+        // 이미 queue에 한번 들어간 값은 dfs 탐색을 건너뛰자 ch
+        function solution(s, e) {
+            let answer = 0;
+
+            let ch = Array.from({length: 10001}, () => 0);
+            let dis = Array.from({ length: 10001 }, () => 0);
+
+            let queue = [];
+            ch[s] = 1;
+            queue.push(s);
+            dis[s] = 0;
+            while(queue.length){
+
+                let x = queue.shift();
+                for (let nx of [x+1,x-1,x+5]) {
+                    if(nx === e) return dis[x] + 1;
+                    if(nx > 0 && nx <= 10000 && ch[nx] === 0){
+                        ch[nx] = 1;
+                        dis[nx] = dis[x] + 1; 
+                        queue.push(nx);
+                    }
+                }
+            }
+
+
+            return answer;
+        }
+
+
+
+        console.log(solution(5, 14));
+    </script>
+</body>
+
+</html>

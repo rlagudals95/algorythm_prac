@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    
+    <script>
+        // 출발지점에서 도착지점까지의 최단거리를 구하는데 자주 쓰인다
+        // dfs 는 스택 bfs는 큐를 이용한다
+        function solution(n, arr) {
+            let answer = "";
+          
+            let queue = [];
+            queue.push(1); // 시작점 1을 넣는다
+
+            while(queue.length){
+                let v = queue.shift();
+                answer += v + " ";
+                for (let nv of [v*2,v*2+1]) {// 두 갈래로 동시탐색 2개가 순차적으로 queue에 push
+                    if(nv > 7) continue;
+                    queue.push(nv); 
+                }
+            }
+
+            return answer;
+        }
+
+        
+        
+        console.log(solution());
+    </script>
+</body>
+
+</html>
