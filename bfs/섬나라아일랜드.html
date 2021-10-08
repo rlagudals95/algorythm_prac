@@ -8,38 +8,53 @@
 <body>
 
     <script>
-        // 6,5,10   
-        // 이미 queue에 한번 들어간 값은 dfs 탐색을 건너뛰자 ch
-        function solution(s, e) {
+        // 이걸어찌... 대각선까지 전방향 검사를 해야하나??
+        function solution(n, board) {
             let answer = 0;
 
-            let ch = Array.from({ length: 10001 }, () => 0);
-            let dis = Array.from({ length: 10001 }, () => 0);
-
-            let queue = [];
-            ch[s] = 1;
-            queue.push(s);
-            dis[s] = 0;
-            while (queue.length) {
-
-                let x = queue.shift();
-                for (let nx of [x + 1, x - 1, x + 5]) {
-                    if (nx === e) return dis[x] + 1;
-                    if (nx > 0 && nx <= 10000 && ch[nx] === 0) {
-                        ch[nx] = 1;
-                        dis[nx] = dis[x] + 1;
-                        queue.push(nx);
+            let dx = [-1,-1,0,1,1,1,0,-1];
+            let dy = [0,1,1,1,0,-1,-1,-1];
+           
+            function DFS(x,y) {
+                board[x][y] = 0; // 섬의 첫번째 지점 check
+                for(let k = 0; k < 8; k++){
+                    let nx = x + dx[k];
+                    let ny = y + dy[k];
+                    if(nx >= 0 && ny >= 0 && nx < 7 && ny < 7 &&  board[nx][ny] === 1 ){
+                        // board[nx][ny] === 1 조건으로 재귀가 알아서 멈춤
+                        DFS(nx, ny);
                     }
                 }
             }
 
+            for(let i =0; i <n; i++){
+                for(let j = 0; j <n; j++){
+                    if(board[i][j] === 1){ // 섬발견                  
+                        answer++;
+                        console.log(i,j);
+                        DFS(i,j)
+                    }
+                }
+            }
 
+           
+
+
+            
             return answer;
         }
 
+        let arr = [
+            [1, 1, 0, 0, 0, 1, 0],
+            [0, 1, 1, 0, 1, 1, 0],
+            [0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 1, 0, 1, 1],
+            [1, 1, 0, 1, 1, 0, 0],
+            [1, 0, 0, 0, 1, 0, 0],
+            [1, 0, 1, 0, 1, 0, 0],
+        ]
 
-
-        console.log(solution(5, 14));
+        console.log(solution(7, arr));
     </script>
 </body>
 
