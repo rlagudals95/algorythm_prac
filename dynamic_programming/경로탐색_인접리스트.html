@@ -1,0 +1,72 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // 인접 리스트는 graph에 직접 인접한 노드 번호를 넣는다
+        function solution(n, arr) {
+            let answer = 0;
+            let graph = Array.from(Array(n + 1), () => Array());
+            let ch = Array.from(Array(n + 1), () => 0);
+            //console.log('ch', ch);
+            //console.log('graph', graph);
+            let path = [];
+
+            for (let [a, b] of arr) {
+                graph[a].push(b); //인접리스트
+            }
+
+
+            function DFS(v) {
+
+                if (v === n) {
+                    //console.log(ch)
+                    answer++
+                } else {
+                    for (let i = 0; i <= graph[v].length; i++) {
+                        // 그래프의 길이만큼만 for문
+                        // 이어져 있는 노드만 그래프에 있어 검사할 필요x
+                        if (ch[graph[v][i]] === 0) { // 방문노드 체크
+                            ch[graph[v][i]] = 1;
+                            path.push(graph[v][i])
+                            //console.log('i', i);
+                            DFS(graph[v][i]);
+                            ch[graph[v][i]] = 0;
+                            path.pop();
+                        }
+                    }
+                    //console.log('loop')
+                }
+            }
+
+            ch[1] = 1;
+
+            DFS(1)
+
+
+
+
+            return answer;
+        }
+
+        let arr = [
+            [1, 2],
+            [1, 3],
+            [1, 4],
+            [2, 1],
+            [2, 3],
+            [2, 5],
+            [3, 4],
+            [4, 2],
+            [4, 5]
+        ];
+        // 5개의 vertex와 간선정보
+        console.log(solution(5, arr));
+    </script>
+</body>
+
+</html>
