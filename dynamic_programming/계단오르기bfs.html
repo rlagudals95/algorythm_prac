@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        function solution(n) {
+            let answer = 0;
+
+            let queue = [];
+            let sum = 0;
+            queue.push(0)
+            while(queue.length){
+
+                let v = queue.shift();
+                
+                for ( nv of [v + 1,v + 2] ){
+                    if(nv == n) {
+                        answer++
+                    }
+                    if( nv < n+1){
+                        queue.push(nv);
+                    }
+                }         
+            }
+            return answer;
+        }
+
+
+        // 5개의 vertex와 간선정보
+        console.log(solution(7));
+    </script>
+
+</body>
+
+</html>
