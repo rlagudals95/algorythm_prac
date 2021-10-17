@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        function solution(n) {
+            let answer = 0;
+            
+            function DFS(sum){
+                
+                if(sum == n ){
+                    console.log('sum',sum)
+                    answer++
+                } else if (sum < n + 1) {
+                    DFS(sum + 1);
+                    DFS(sum + 2);
+                }
+            }
+
+            DFS(0)
+
+            return answer;
+        }
+
+    
+        // 5개의 vertex와 간선정보
+        console.log(solution(7));
+    </script>
+
+</body>
+
+</html>
