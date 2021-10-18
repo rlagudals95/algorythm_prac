@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        // 작개 쪼개서 문제를 해결한다
+        // ch에 쪼갠 경우의수 저장
+        function solution(n) {
+            let answer = 0;
+            let dy = Array.from({length:n+1}, ()=>0);
+
+            dy[1] = 1;
+            dy[2] = 2; // 갈수 있는 계단수 dy 저장 > 첫번째 계단에 갈수 있는 경우의수 1 두번째는 2개
+
+            //3번째 부터 경우의 수 계산
+            //공식을 보면 이렇다
+            for (let i = 0; i <= n ; i++ ){
+                dy[i] = dy[i-2] + dy [i-1]
+            }
+
+            answer = dy[n]
+            return answer;
+        }
+
+        console.log(solution(7));
+    </script>
+
+</body>
+
+</html>
