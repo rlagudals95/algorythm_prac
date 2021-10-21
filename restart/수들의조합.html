@@ -1,0 +1,62 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+        // 앞 1 뒤 1 앞 5 이동가능
+        // 최소 점프횟수 구하시오
+        function solution(arr) {
+            let answer = 0;
+            const m = 3
+            const len = arr.length;
+
+            let ch = Array.from({length : 3}, () => 0);
+            let tmp = Array.from({ length: 5 }, () => 0);
+
+           
+            let sums = [];
+
+            function DFS (L) {
+                if (L == m){
+
+                    let sum = 0;
+                    for (let i = 0; i < ch.length; i++){
+                        sum += ch[i];
+                    }
+                    if (sum % 6 === 0 && !sums.includes(sum)){
+                        sums.push(sum)
+                        answer++
+
+                    } 
+                } else {
+                    for (let i = 0; i < len; i++){
+                        if (tmp[i] === 0 ){
+                            tmp[i] = 1;
+                            ch[L] = arr[i]
+                            DFS(L+1)
+                            tmp[i] = 0;
+                        }
+                    } 
+                }
+            }
+            
+            DFS(0)
+
+            console.log(sums);
+
+
+            return answer;
+        }
+
+        let arr = [2,4,5,8,12]
+
+        console.log(solution(arr));
+    </script>
+</body>
+
+</html>

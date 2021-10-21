@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+        // 앞 1 뒤 1 앞 5 이동가능
+        // 최소 점프횟수 구하시오
+        function solution(s, e) {
+            let answer = 0;
+            
+            let ch = Array.from({ length: 10001 }, () => 0);
+            let queue = []; 
+            queue.push(s);
+
+            while (queue.length) {
+                let v = queue.shift()
+                for ( nv of [ v + 1 , v - 1, v + 5 ]){
+                    if( nv === e ){
+                        
+                        return answer
+                    }
+                    if (ch[nv] === 0 ){
+                        queue.push(nv)
+                        answer++
+                    }
+                    
+                }
+                
+            }
+
+
+            return answer;
+        }
+
+      
+
+        console.log(solution(5, 14));
+    </script>
+</body>
+
+</html>
