@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+        // 앞 1 뒤 1 앞 5 이동가능
+        // 최소 점프횟수 구하시오
+        function solution(n) {
+            let answer = 0;
+
+            function DFS(L, M) {
+                if (L === 1) {
+                    console.log(M);
+                } else {
+                    DFS(L - 1, M * (L - 1));
+                }
+            }
+
+            DFS(n, n)
+
+            return answer;
+        }
+
+
+
+        console.log(solution(5));
+    </script>
+</body>
+
+</html>
