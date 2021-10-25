@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+        // 앞 1 뒤 1 앞 5 이동가능
+        // 최소 점프횟수 구하시오
+        function solution(c,n, arr) {
+            let answer = [];
+            let flag = 0;
+        
+            function DFS (L ,sum) {
+                if (L === arr.length ) {
+                    if(sum <= c) 
+                    answer.push(sum);
+                } else {
+                    DFS(L + 1 ,sum + arr[L]);
+                    DFS(L + 1, sum);
+                }
+            }
+            DFS(0,0)
+
+            answer = Math.max.apply(null,answer);
+
+            return answer;
+        }
+
+        let arr = [81,58,42,33,61]
+
+        console.log(solution(259, 5 ,arr));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        function solution(n, m, arr) {
+             let answer = Number.MIN_SAFE_INTEGER;
+            //console.log(arr);
+            function DFS (L,sum ,t) {
+                if (L === n ) {
+                    if (t <= m) answer = Math.max(answer , sum); 
+                }else {
+                    DFS(L + 1, sum + arr[L][0] , t + arr[L][1]);
+                    DFS(L + 1, sum , t)
+                }
+            }
+
+            DFS(0,0,0)
+
+            return answer;
+        }
+
+        let arr = [
+            [10, 5],
+            [25, 12],
+            [15, 8],
+            [6, 3],
+            [7, 4]
+        ]
+
+        console.log(solution(5,20,arr));
+    </script>
+</body>
+
+</html>
