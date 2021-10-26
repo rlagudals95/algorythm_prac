@@ -7,32 +7,30 @@
 
 <body>
     <script>
-        function solution(n, m, arr) {
-            let answer = Number.MIN_SAFE_INTEGER;
-            //console.log(arr);
-            function DFS(L, sum, t) {
-                if (L === n) {
-                    if (t <= m) answer = Math.max(answer, sum);
+        function solution(n,m) {
+            let answer ;
+            let ch = Array.from({length : m}, () => 0);
+           
+            function DFS (L) {
+                
+                if (L == m){
+                    console.log(ch);
                 } else {
-                    DFS(L + 1, sum + arr[L][0], t + arr[L][1]);
-                    DFS(L + 1, sum, t)
+                    for (let i = 1; i < n + 1; i++){
+                        ch[L] = i
+                        DFS(L + 1)
+                    }
                 }
+            
             }
 
-            DFS(0, 0, 0)
-
+            DFS(0)
             return answer;
         }
 
-        let arr = [
-            [10, 5],
-            [25, 12],
-            [15, 8],
-            [6, 3],
-            [7, 4]
-        ]
+    
 
-        console.log(solution(5, 20, arr));
+        console.log(solution(3,2));
     </script>
 </body>
 

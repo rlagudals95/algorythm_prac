@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        function solution(n, arr) {
+            let answer = 0;
+
+            let sum = 0;
+            let memoArr;
+            for (let i = 0; i < arr.length; i++){
+                let total = arr[i].toString().split('').reduce((a, b) => parseInt(a) + parseInt(b));
+                
+                if (sum < total){
+                    sum = total;
+                    memoArr = arr[i]
+                } else if (sum == total) {
+                    if(memoArr < arr[i]) answer = arr[i]              
+                }
+            }
+            console.log(memoArr);
+            return answer;
+        }
+
+        let arr = [128,460,603,40,521,137,123];
+        console.log(solution(7, arr));
+    </script>
+</body>
+
+</html>
