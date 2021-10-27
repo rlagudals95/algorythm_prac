@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+        // 앞 1 뒤 1 앞 5 이동가능
+        // 최소 점프횟수 구하시오
+        function solution(len,arr) {
+            let answer = [];
+            
+            for (let i =0; i < len; i++){
+                let reverse = 0;
+                let numLen = arr[i].toString().length
+
+                for (let j = numLen -1 ; j > 0; j--) {
+                    reverse += arr[i].toString().split('')[j - 1];
+                    console.log(reverse);
+                }
+
+                for (let k = 2; k < parseInt(reverse); k++ ){
+                    
+                    if (parseInt(reverse) % k == 0){
+                        console.log('소수아님');
+                    }else {
+                        answer.push(parseInt(reverse))
+                    }
+                }
+               
+                console.log('loop');
+            }
+
+            return answer;
+        }
+
+        let arr = [32,55,62,20,250,370,200,30,100]
+
+        console.log(solution(9, arr));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+        // 앞 1 뒤 1 앞 5 이동가능
+        // 최소 점프횟수 구하시오
+        function solution(n,F) {
+            let answer = 0;
+            let results = []
+            
+            let cnt = 1; 
+
+            for (let i = 0; i < arr.length; i++){
+                for (let j = 0; j < arr.length - 1 - i; j++) {
+                    //console.log(arr[j], arr[j+1]);
+                    if(arr[j][0] > arr[j+1][0]){
+                        [arr[j],arr[j+1]] = [arr[j+1],arr[j]]
+                    }
+                }
+            }
+
+            let st = arr[0][0];
+
+            for (let i = 0; i < arr.length-1; i++) {    
+                let st = arr[i][0]
+                let et = arr[i][1]
+                for (let j = 1; j < arr.length - 1; j++){
+                    console.log(st);
+                    if(et > arr[j][1]){
+                        console.log(et);
+                        cnt++
+                        results.push(cnt)
+                    } else {
+                        cnt = 0;
+                    } 
+                }    
+                //console.log(arr[i]);
+            }
+            
+
+            answer = Math.max(...results)
+            console.log('answer',answer);
+            return answer;
+        }
+
+        let arr = [ [14, 18],
+                    [12, 15],
+                    [15, 20],
+                    [20, 30],
+                    [5,  14]]
+
+        console.log(solution(5,16));
+    </script>
+</body>
+
+</html>
