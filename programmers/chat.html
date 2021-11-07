@@ -1,0 +1,62 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    <script>
+
+        function solution(record) {
+            var answer = [];
+            let users = [];
+
+            for (let i = record.length - 1; i >= 0; i--) {
+                let flag;
+                let split = record[i].split(' ');
+                if (split.length == 2) split.push(' ');
+
+                for (let j = 0; j < users.length; j++) {
+                    //console.log(users[j][0], split[1],split[2]);
+                    //console.log(users[j])
+                    if (users[j][0] == split[1]) {
+                        flag = 1;
+                    }
+                }
+                if (!flag) users.push([split[1], split[2]])
+            }
+
+            // 채팅방안의 user id 와 nickname 구함
+            console.log('users', users);
+
+            for (let i = 0; i < record.length; i++) {
+                let split = record[i].split(' ');
+                if (split.length == 2) split.push('');
+
+                let command = split[0];
+                let nick;
+
+                if (command == 'Enter') command = '님이 들어왔습니다.'
+                else if (command == 'Leave') command = '님이 나갔습니다.'
+                else if (command == 'Change') continue;
+
+                for (let j = 0; j < users.length; j++) {
+                    // console.log('test : ', users[j][0])// users[j][1]
+                    // console.log('test2 : ', split[1])
+                    if (split[1] == users[j][0]) {
+
+                        nick = users[j][1]
+                    }
+                }
+                console.log(nick, command)
+                answer.push(nick + command)
+            }
+
+            return answer;
+        }
+    </script>
+</body>
+
+</html>
