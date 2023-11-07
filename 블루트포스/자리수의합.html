@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(len, arr) {
+        let answer = 0;
+
+        for (let i = 0; i < arr.length; i++) {
+          const numArr = String(arr[i]).split("");
+
+          const sum = numArr.reduce(
+            (acc, cur) => parseInt(acc) + parseInt(cur),
+            0
+          );
+
+          const answerSum = String(answer)
+            .split("")
+            .reduce((acc, cur) => parseInt(acc) + parseInt(cur), 0);
+
+          if (sum >= answerSum) {
+            if (arr[i] > answer) {
+              answer = arr[i];
+            }
+          }
+        }
+
+        return answer;
+      }
+
+      console.log(solution(7, [128, 460, 603, 40, 521, 137, 123]));
+    </script>
+  </body>
+</html>
