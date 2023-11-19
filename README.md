@@ -31,11 +31,13 @@
 
 ex) stack의 push, pop
 
+
 - O(log N)
 
 연산이 한 번 실행될 때 마다 데이터의 크기가 절반 감소하는 알고리즘 (log의 지수는 항상 2)
 
 ex) binary search 알고리즘, tree 형태 자료구조 탐색
+
 
 - O(N)
 
@@ -43,17 +45,20 @@ ex) binary search 알고리즘, tree 형태 자료구조 탐색
 
 ex) 1중 for문
 
+
 - O(N log N)
 
 O(N)의 알고리즘과 O(log N)의 알고리즘이 중첩된 형태
 
 ex) 퀵 / 병합 / 힙 정렬
 
+
 - O(N^2)
 
 O(N)의 알고리즘과 O(log N)의 알고리즘이 중첩된 형태
 
 ex) 2중 For 문, 삽입/거품/선택 정렬
+
 
 - O(2^N)
 
