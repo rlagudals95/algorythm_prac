@@ -7,6 +7,52 @@
     <title>Document</title>
   </head>
   <body>
-    <script></script>
+    <script>
+      // Node - next, prev
+      // DoubleLinkedList - head, tail, legnth
+
+      class Node {
+        constructor(val) {
+          this.val = val;
+          this.next = null; // 다음 노드
+          this.prev = null; // 이전 노드
+        }
+      }
+
+      class DoubleLinkedList {
+        constructor() {
+          this.head = null;
+          this.tail = null;
+          this.length = 0;
+        }
+
+        push(val) {
+          const newNode = new Node(val);
+
+          // 연결리스트의 길이가 0일때
+          if (this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+          } else {
+            // 맨뒤에 삽입되므로 newNode가 현재 tail의 next
+            this.tail.next = newNode;
+            // newNode가 tail이 되므로 이전 tail이 newNode의 이전이됨
+            newNode.prev = this.tail;
+            this.tail = newNode;
+          }
+
+          this.length++;
+          return this;
+        }
+      }
+
+      const list = new DoubleLinkedList();
+
+      list.push(99);
+      list.push(100);
+      list.push("LAST_ITEM");
+
+      console.log(list);
+    </script>
   </body>
 </html>
