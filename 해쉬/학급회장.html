@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 학급회장으로 선출된 알파벳, 가장 많은 알파벳을 출력해라
+      function solution(votes) {
+        const voteMap = new Map();
+
+        for (const v of votes) {
+          if (voteMap.has(v)) {
+            voteMap.set(v, voteMap.get(v) + 1);
+          } else {
+            voteMap.set(v, 0);
+          }
+        }
+
+        return [...voteMap.entries()].reduce((acc, cur) =>
+          cur[1] > acc[1] ? cur : acc
+        )[0];
+      }
+
+      const votes = "BACBACCACCBDEDE";
+      console.log("answer : ", solution(votes));
+    </script>
+  </body>
+</html>
