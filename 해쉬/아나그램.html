@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 주어진 두개의 문자열에서 각각 조합 시 같은 문자열이 나오는 경우가 있다면 YES 아니면 NO 출력
+      function solution(a, b) {
+        let answer = "YES";
+
+        const aMap = new Map();
+
+        for (let i in a) {
+          if (aMap.has(a[i])) {
+            aMap.set(a[i], aMap.get(a[i]) + 1);
+          } else {
+            aMap.set(a[i], 1);
+          }
+        }
+
+        for (let i of b) {
+          if (!aMap.has(i) || aMap.get(i) === 0) return "NO";
+          aMap.set(i, aMap.get(i) - 1);
+        }
+
+        return answer;
+      }
+
+      console.log("answer : ", solution("AbaAeCe", "baeeACA"));
+    </script>
+  </body>
+</html>
