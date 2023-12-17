@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, m) {
+        const answer = [];
+        const array = Array.from({ length: n }, (v, i) => i + 1);
+
+        function dfs(index, arr) {
+          if (arr.length >= m) {
+            answer.push(arr);
+            return;
+          } else {
+            for (let i = index; i < array.length; i++) {
+              dfs(i, [...arr, array[i]]);
+            }
+          }
+        }
+
+        dfs(0, []);
+        return answer;
+      }
+
+      console.log(solution(4, 2));
+    </script>
+  </body>
+</html>
