@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // 주어진 무게 C를 넘기지 않으면서 최대한으로 실을 수 있는 무게 W를 구하라
+      function solution(weightLimit, len, arr) {
+        let answer = 0;
+
+        function dfs(index, sum) {
+          if (sum > weightLimit) {
+            return;
+          }
+
+          if (index === len) {
+            answer = Math.max(answer, sum);
+          } else {
+            dfs(index + 1, sum + arr[index]); // 태운다
+            dfs(index + 1, sum); // 안태운다
+          }
+        }
+
+        dfs(0, 0);
+        return answer;
+      }
+
+      const weightLimit = 259;
+      const len = 5;
+      const arr = [81, 58, 42, 33, 61];
+      console.log(solution(259, 5, arr));
+    </script>
+  </head>
+  <body></body>
+</html>
