@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // 점수와 푸는데 걸리는 시간이 배열 형태로 주어지게 된다.
+      // 제한시간 M안에 N개의 문제 중 최대점수를 얻을수 있도록
+      function solution(m, ps, pt) {
+        let answer = -1;
+        let n = ps.length;
+
+        // 문제를 푼다 풀지 않는다 두개로 이진 트리 탐색
+        function dfs(index, sum, time) {
+          if (time > m) {
+            // 제한시간 이내인가?
+            return;
+          }
+
+          if (index === n) {
+            answer = Math.max(answer, sum);
+          } else {
+            dfs(index + 1, sum + ps[index], time + pt[index]); // 문제를 푸냐
+            dfs(index + 1, sum, time); // 문제를 풀지 않느냐
+          }
+        }
+
+        dfs(0, 0, 0);
+
+        return answer;
+      }
+
+      const ps = [10, 25, 15, 6, 7]; // 문제의 점수
+      const pt = [5, 12, 8, 3, 4]; // 문제 푸는 시간
+      const timeLimit = 20;
+      console.log(solution(timeLimit, ps, pt));
+    </script>
+  </head>
+  <body></body>
+</html>
