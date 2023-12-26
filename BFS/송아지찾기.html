@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 현수는 스카이 콩콩이를 가지고 있다.
+      // 한번의 점프로 앞으로 1 뒤로 1 앞으로 5를 움직일 수 있다.
+      // 현수의 위치와 송아지의 위치가 좌표로 주어지면
+      // 최소 몇번의 점프로 현수가 송아지의 위치로 갈 수 있는가?
+      // 직선 좌표 점은 1부터 10,000 까지의 범위
+      function solution(s, e) {
+        let answer = 0;
+
+        const ch = Array.from({ length: 10001 }, () => 0); // 움직인곳 check
+        const dis = Array.from({ length: 10001 }, () => 0); // 거리 check 움직인 횟수로 check
+        const queue = [];
+
+        ch[s] = 1; // 현수의 출발지 체크
+        queue.push(s); // 현수위치 queue에 push
+        dis[s] = 0; // 현수 출발지점 이동 카운트 0
+
+        while (queue.length) {
+          const x = queue.shift();
+
+          // 세가지 경로를 탐색
+          // nx는 세가지 이동 방식을 이동한 좌표
+          for (const nx of [x - 1, x + 1, x + 5]) {
+            if (nx === e) {
+              return dis[x] + 1; // 이동한 다음 좌표가 목적지니 다음 이동 카운트 + 1을 해주어야한다.
+            }
+            // 범위 밖이거나 이미 queue에 들어간 숫자가 아닐때 이동한 곳이 아닐때
+            if (nx > 0 && nx <= 10000 && ch[nx] === 0) {
+              ch[nx] = 1;
+              queue.push(nx);
+              dis[nx] = dis[x] + 1; // 부모 노드 즉, 이전에 움직인 횟수 + 1로 체크
+            }
+          }
+        }
+
+        return answer;
+      }
+
+      const 현수위치 = 5;
+      const 송아지위치 = 14;
+
+      const 현수위치2 = 8;
+      const 송아지위치2 = 3;
+
+      console.log(solution(현수위치, 송아지위치));
+      console.log(solution(현수위치2, 송아지위치2));
+    </script>
+  </body>
+</html>
