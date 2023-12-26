@@ -17,26 +17,27 @@
 
         const ch = Array.from({ length: 10001 }, () => 0); // 움직인곳 check
         const dis = Array.from({ length: 10001 }, () => 0); // 거리 check 움직인 횟수로 check
-        const queue = [];
 
-        ch[s] = 1; // 현수의 출발지 체크
-        queue.push(s); // 현수위치 queue에 push
-        dis[s] = 0; // 현수 출발지점 이동 카운트 0
+        ch[s] = 1; // 현수의 현재위치 족적? 체크
+        dis[s] = 0; // 현수의 위치는 5 이동카운트는 0 체크
+
+        const queue = [];
+        queue.push(s);
 
         while (queue.length) {
-          const x = queue.shift();
+          const n = queue.shift();
 
-          // 세가지 경로를 탐색
-          // nx는 세가지 이동 방식을 이동한 좌표
-          for (const nx of [x - 1, x + 1, x + 5]) {
+          for (const nx of [n + 1, n - 1, n + 5]) {
+            // 3갈래의 바로 아래 노드 탐색
             if (nx === e) {
-              return dis[x] + 1; // 이동한 다음 좌표가 목적지니 다음 이동 카운트 + 1을 해주어야한다.
+              // 목적지에 도착분기
+              return dis[n] + 1; // 현재 위치의 이동카운트 return
             }
-            // 범위 밖이거나 이미 queue에 들어간 숫자가 아닐때 이동한 곳이 아닐때
-            if (nx > 0 && nx <= 10000 && ch[nx] === 0) {
+            // 범위 안 & 이미 간곳이 아니면
+            if (nx > 0 && nx < 10001 && !ch[nx]) {
               ch[nx] = 1;
+              dis[nx] = dis[n] + 1;
               queue.push(nx);
-              dis[nx] = dis[x] + 1; // 부모 노드 즉, 이전에 움직인 횟수 + 1로 체크
             }
           }
         }
