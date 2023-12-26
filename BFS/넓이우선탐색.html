@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // BFS는 최단거리 문제에 자주 쓰인다.
+      // 이진 트리를 BFS로 탐색하시오
+      // queue를 사용해라 출발점은 루트 노드
+      // 출발 노트를 선택 출발 노드에서 한번에 갈 수 있는 경로를 모두 탐색
+      // 도착지에 도달하기 전까지 계속 탐색
+      function solution() {
+        let answer = "";
+
+        const queue = [];
+        queue.push(1); // 루트노트 push
+        while (queue.length) {
+          let v = queue.shift(); // 루트노드 꺼내기 - 1
+
+          // 루트노드와 연결된 것 연결
+          answer += v + " ";
+
+          for (let nv of [v * 2, v * 2 + 1]) {
+            // 2, 3
+            console.log("nv", nv);
+            if (nv > 7) {
+              continue;
+            }
+            queue.push(nv);
+          }
+        }
+
+        return answer;
+      }
+
+      console.log(solution());
+    </script>
+  </body>
+</html>
