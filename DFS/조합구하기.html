@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1부터 N까지 번호가 적힌 구슬있다.
+      // 이중 M개를 뽑는 방법의 수를 출력하시오
+      function solution(n, m) {
+        let answer = [];
+        let tmp = Array.from({ length: m }, () => 0);
+
+        function dfs(L, s) {
+          if (L === m) {
+            answer.push(tmp.slice()); // 깊은 복사로 넣기
+            return;
+          } else {
+            for (let i = s; i <= n; i++) {
+              // 처음엔 n = 4 => 네 가닥으로 트리가 형성됨
+              tmp[L] = i; // tmp에 들어간 숫자 체크
+              dfs(L + 1, i + 1);
+            }
+          }
+        }
+        dfs(0, 1);
+        return answer;
+      }
+
+      const n = 4;
+      const m = 2;
+
+      console.log(solution(n, m));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 가장 적은 수의 동전으로 거슬러 줄 수 있는 경우를 찾아라
+
+      function solution(coins, total) {
+        // 3줄기로 뻗어가는 트리를 만들어보자!
+        let answer = Infinity;
+
+        function dfs(index, sum) {
+          if (sum > total) {
+            return;
+          }
+
+          if (sum === total) {
+            answer = Math.min(answer, index);
+            return;
+          }
+
+          for (let i = 0; i < coins.length; i++) {
+            dfs(index + 1, sum + coins[i]);
+          }
+        }
+
+        dfs(0, 0);
+        return answer;
+      }
+
+      const coins = [1, 2, 5]; // 이 동전들 갯수를 최소한으로 15를 만들 수 있는 경우의 수
+      const total = 15;
+
+      console.log(solution(coins, total));
+    </script>
+  </body>
+</html>
