@@ -15,24 +15,21 @@
         const dy = [0, 1, 1, 1, 0, -1, -1, -1];
 
         function DFS(x, y) {
-          board[x][y] = 0; // 지나간 곳은 0으로
-
-          for (let k = 0; k < dx.length; k++) {
+          for (let k = 0; k < n; k++) {
             const nx = x + dx[k];
             const ny = y + dy[k];
 
-            // 갈 수 있다면 재귀
             if (nx >= 0 && ny >= 0 && nx < n && ny < n && board[nx][ny] === 1) {
+              board[nx][ny] = 0;
               DFS(nx, ny);
             }
           }
         }
 
-        // 재귀 호출 횟수를 구해라
         for (let i = 0; i < n; i++) {
           for (let j = 0; j < n; j++) {
             if (board[i][j] === 1) {
-              // 1인 곳을 찾는다 => 출발지점
+              board[i][j] = 0;
               answer++;
               DFS(i, j);
             }
