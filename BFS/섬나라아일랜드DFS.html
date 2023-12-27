@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // BFS 섬이 몇개인지 구하시오
+      function solution(board) {
+        let answer = 0;
+        const n = board.length;
+        const dx = [-1, -1, 0, 1, 1, 1, 0, -1];
+        const dy = [0, 1, 1, 1, 0, -1, -1, -1];
+
+        function DFS(x, y) {
+          board[x][y] = 0; // 지나간 곳은 0으로
+
+          for (let k = 0; k < dx.length; k++) {
+            const nx = x + dx[k];
+            const ny = y + dy[k];
+
+            // 갈 수 있다면 재귀
+            if (nx >= 0 && ny >= 0 && nx < n && ny < n && board[nx][ny] === 1) {
+              DFS(nx, ny);
+            }
+          }
+        }
+
+        // 재귀 호출 횟수를 구해라
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n; j++) {
+            if (board[i][j] === 1) {
+              // 1인 곳을 찾는다 => 출발지점
+              answer++;
+              DFS(i, j);
+            }
+          }
+        }
+
+        return answer;
+      }
+
+      let arr = [
+        [1, 1, 0, 0, 0, 1, 0],
+        [0, 1, 1, 0, 1, 1, 0],
+        [0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 1, 0, 1, 1],
+        [1, 1, 0, 1, 1, 0, 0],
+        [1, 0, 0, 0, 1, 0, 0],
+        [1, 0, 1, 0, 1, 0, 0],
+      ];
+
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
