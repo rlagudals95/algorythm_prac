@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(board) {
+        let answer = 0;
+        let n = board.length;
+        let dx = [-1, -1, 0, 1, 1, 1, 0, -1];
+        let dy = [0, 1, 1, 1, 0, -1, -1, -1];
+        let queue = [];
+
+        // 일단 지도를 모두 돌면서 시작지점이될 1인 좌표를 찾아라
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n; j++) {
+            if (board[i][j] === 1) {
+              // 시작지점 조건
+              board[i][j] = 0; // 지나간 곳 체크
+              queue.push([i, j]);
+              answer++; // 재귀가 호출될때 마다 즉, 1인곳을 다지나 더이상 갈데가 없을때 섬하나추가
+              while (queue.length) {
+                const [x, y] = queue.shift(); // 현재 위치가져오기
+
+                for (let k = 0; k < dx.length; k++) {
+                  // 현재 위치기준 8방향 탐색
+                  const nx = x + dx[k];
+                  const ny = y + dy[k];
+                  if (
+                    nx >= 0 &&
+                    ny >= 0 &&
+                    nx < n &&
+                    ny < n &&
+                    board[nx][ny] === 1
+                  ) {
+                    board[nx][ny] = 0;
+                    queue.push([nx, ny]);
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        return answer;
+      }
+
+      let arr = [
+        [1, 1, 0, 0, 0, 1, 0],
+        [0, 1, 1, 0, 1, 1, 0],
+        [0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 1, 0, 1, 1],
+        [1, 1, 0, 1, 1, 0, 0],
+        [1, 0, 0, 0, 1, 0, 0],
+        [1, 0, 1, 0, 1, 0, 0],
+      ];
+
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
