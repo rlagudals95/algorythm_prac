@@ -10,24 +10,27 @@
       // 가장 적은 수의 동전으로 거슬러 줄 수 있는 경우를 찾아라
 
       function solution(coins, total) {
-        let answer = 0;
+        let answer = Infinity;
+        const queue = [];
 
-        function dfs(sum, count) {
+        queue.push({ sum: 0, count: 0 });
+
+        while (queue.length) {
+          const { sum, count } = queue.shift();
+
           if (sum > total) {
-            return;
+            continue;
           }
 
           if (sum === total) {
-            answer = Math.min(count);
-            return;
-          } else {
-            for (let i = 0; i < coins.length; i++) {
-              dfs(sum + coins[i], count + 1);
-            }
+            answer = Math.min(count, answer);
+            continue;
+          }
+
+          for (let i = 0; i < coins.length; i++) {
+            queue.push({ sum: sum + coins[i], count: count + 1 });
           }
         }
-
-        dfs(0, 0);
 
         return answer;
       }
