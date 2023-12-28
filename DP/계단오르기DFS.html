@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 철수는 계단을 오를 때 한번에 한계단 또는 두계단씩 오른다.
+      // 만약 총 4계단을 오른다면 그 방법의 수는?
+      // 음? 그냥 DFS 문제 아닌가?
+
+      function solution(stairs, steps) {
+        let answer = 0;
+
+        function DFS(sum) {
+          // 두 갈래의 DFS
+          if (stairs < sum) return;
+
+          if (sum === stairs) {
+            answer++;
+            return;
+          } else {
+            for (let i = 0; i < steps.length; i++) {
+              DFS(sum + steps[i]);
+            }
+          }
+        }
+
+        DFS(0);
+
+        return answer;
+      }
+
+      const steps = [1, 2];
+      console.log(solution(4, steps));
+    </script>
+  </body>
+</html>
