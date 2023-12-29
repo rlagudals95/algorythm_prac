@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 인접 리스트이용
+      function solution(n, arr) {
+        let answer = 0;
+
+        // 2차원배열 인접행렬
+        let graph = Array.from(Array(n + 1), () => Array());
+        let ch = Array.from({ length: n + 1 }, () => 0);
+        console.log(graph);
+
+        const path = [];
+
+        // 인접 리스트 생성
+        // 1번째 배열 부터 => 1번 정점에선 2,3,4를 갈 수 있다, & 2번 정점에서 1,3,5를 갈 수 있다.
+        // [[], [2, 3, 4], [1, 3, 5], [4], [2, 5], []];
+        for (const [a, b] of arr) {
+          graph[a].push(b);
+        }
+
+        function DFS(v) {
+          if (v === n) {
+            answer++;
+          } else {
+            // graph[v].length => 이어진 간선만큼만 for문
+            for (let i = 0; i < graph[v].length; i++) {
+              if (ch[graph[v][i]] === 0) {
+                path.push(graph[v][i]);
+                ch[graph[v][i]] = 1;
+                DFS(graph[v][i]);
+                path.pop();
+                ch[graph[v][i]] = 0;
+              }
+            }
+          }
+        }
+
+        ch[1] = 1;
+        path.push(1);
+        DFS(1); // 시작은 1번부터
+
+        return answer;
+      }
+
+      const arr = [
+        // 간선정보
+        [1, 2],
+        [1, 3],
+        [1, 4],
+        [2, 1],
+        [2, 3],
+        [2, 5],
+        [3, 4],
+        [4, 2],
+        [4, 5],
+      ];
+      // (정점의 갯수, 간선정보)
+      console.log(solution(5, arr));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, arr) {
+        let answer = 0;
+
+        // 2차원배열 인접행렬
+        let graph = Array.from(Array(n + 1), () => Array(n + 1).fill(0));
+        let ch = Array.from({ length: n + 1 }, () => 0);
+
+        ch[1] = 1; //출발지점 체크
+        const path = [];
+
+        for (const [a, b] of arr) {
+          graph[a][b] = 1; // a에서 b로 이동 가능하다를 체크
+        }
+
+        function DFS(v) {
+          if (v === n) {
+            console.log(path);
+            answer++;
+          } else {
+            for (let i = 1; i <= n; i++) {
+              // graph[v][i] => v라는 정점에서 i로 갈수 있는지
+              if (graph[v][i] === 1 && ch[i] === 0) {
+                ch[i] = 1;
+                path.push(i);
+                DFS(i);
+                ch[i] = 0;
+                path.pop();
+              }
+            }
+          }
+        }
+
+        path.push(1);
+        DFS(1); // 시작은 1번부터
+
+        return answer;
+      }
+
+      const arr = [
+        // 간선정보
+        [1, 2],
+        [1, 3],
+        [1, 4],
+        [2, 1],
+        [2, 3],
+        [2, 5],
+        [3, 4],
+        [4, 2],
+        [4, 5],
+      ];
+      // (정점의 갯수, 간선정보)
+      console.log(solution(5, arr));
+    </script>
+  </body>
+</html>
