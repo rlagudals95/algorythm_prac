@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 현수는 콩콩이를 타고 있다
+      // 콩콩이는 앞으로 1 뒤로 1 앞으로 5 만큼 이동이 가능하다.
+      // 현수의 위치는 s 송아지의 위치는 e
+      // 1차원 좌표가 주어지고, 최소한의 점프로 양에 도착할 수 있는지 구하라
+      function solution(s, e) {
+        let answer = 0;
+        let loop = 0;
+        const queue = [];
+        const ch = Array.from({ length: 10000 }, () => false);
+        // 현수의 위치는 5니까 출발점으로 5
+        // 현재 위치는 5 이동 카운트는 0
+        queue.push([s, 1]);
+
+        ch[s] = true; // 출발점은 체크
+
+        while (queue.length) {
+          // 현재
+          const [n, count] = queue.shift();
+          for (const nv of [n - 1, n + 1, n + 5]) {
+            loop++;
+            if (nv === e) {
+              console.log(`loop :: ${loop}`);
+              Math.max(answer, count);
+              return count;
+            }
+
+            if (!ch[nv]) {
+              ch[nv] = true;
+              queue.push([nv, count + 1]);
+            }
+          }
+        }
+
+        return answer;
+      }
+
+      console.log(solution(8, 3));
+    </script>
+  </body>
+</html>
