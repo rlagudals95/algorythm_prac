@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1은 벽이고 0 이 통로
+      // 0,0이 출발지이고 7,7이 도착지
+      // 출발지에서 목적지로 갈 수 있는 경우의 수를 구하시오
+      function solution(arr) {
+        let answer = 0;
+        const len = arr.length;
+
+        const ch = Array.from({ length: len }, () => Array(len).fill(false));
+
+        const dx = [-1, 0, 1, 0];
+        const dy = [0, 1, 0, -1];
+
+        function isValidMove(x, y) {
+          return (
+            x >= 0 &&
+            y >= 0 &&
+            x < len &&
+            y < len &&
+            !ch[x][y] &&
+            arr[x][y] === 0
+          );
+        }
+
+        function DFS(x, y) {
+          if (x === len - 1 && y === len - 1) {
+            answer++;
+            return;
+          } else {
+            for (let i = 0; i < 4; i++) {
+              const nx = x + dx[i];
+              const ny = y + dy[i];
+
+              if (isValidMove(nx, ny)) {
+                ch[nx][ny] = true;
+                DFS(nx, ny);
+                ch[nx][ny] = false;
+              }
+            }
+          }
+        }
+        // 출발지 체크
+        ch[0][0] = true;
+        DFS(0, 0);
+
+        return answer;
+      }
+
+      let arr = [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 1, 1, 1, 1, 1, 0],
+        [0, 0, 0, 1, 0, 0, 0],
+        [1, 1, 0, 1, 0, 1, 1],
+        [1, 1, 0, 0, 0, 0, 1],
+        [1, 1, 0, 1, 1, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0],
+      ];
+
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

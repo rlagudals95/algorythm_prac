@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1을 루트노드로 가지고 있고 2개의 가지로 뻗어 나가는 트리를 탐색하시오
+      // 단, 트리의 마지막 번호는 7이며 루트노드 내림차순으로 트리가 구성되어 있음
+      let answer = "";
+      const len = 7;
+      const queue = [];
+
+      queue.push(1);
+
+      while (queue.length) {
+        const n = queue.shift();
+
+        answer += n;
+        for (const nv of [n * 2, n * 2 + 1]) {
+          if (nv > len) continue;
+
+          queue.push(nv);
+        }
+      }
+
+      console.log(answer);
+    </script>
+  </body>
+</html>
