@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- N개의 돌다리를 건널때 한간 또는 두칸씩 건너면서 돌다리를 건넌다. -->
+    <!-- 개울을 건너는 방법은 몇가지 일까요? -->
+    <script>
+      function solution(n) {
+        let answer = 0;
+        // 출발지점 0과 건너고 난 지점 9까지 체크하기위해
+        // 돌다리 7에서 2를 더한 배열생성
+        let dy = Array.from({ length: n + 2 }, () => 0);
+
+        // 1개 혹은 2개를 건널 수 있을때의 체크
+        // 만약 1,2,3개를 건널 수 있다면?
+        // dy[0] = 1; --> 출발점(0)에서 3칸 점프로 2번째 지점까지 바로 올 수 있음
+        dy[1] = 1;
+        dy[2] = 2;
+
+        for (i = 3; i <= n + 1; i++) {
+          dy[i] = dy[i - 1] + dy[i - 2];
+        }
+        console.log(dy);
+        return dy[n + 1];
+      }
+
+      console.log(solution(7));
+    </script>
+  </head>
+  <body></body>
+</html>
