@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script>
+      function solution(m, coin) {
+        let answer = 0;
+        // 냅색 알고리즘
+        // 최소 거스름돈 개수 만큼 2차원 배열에 채워준다
+        let dy = Array.from({ length: m + 1 }, () => 1000);
+        dy[0] = 0;
+        for (let i = 1; i < coin.length; i++) {
+          // 코인의 크기부터 loop
+          // 1은 1부터 2는 2부터, 5는 5부터
+          // 1로 거슬러주는 경우의 수를 dy에 다 채워넣는다.
+          // 이미 채워진 dy에 2로 거슬러주는 경우의 수를 추가하고 최소 갯수로 다시 채워준다.
+          // 이미 채워진 dy에 5로 거슬러주는 경우의 수를 추가하고 최소 갯수로 다시 채워준다.
+          for (let j = coin[i]; j <= m; j++) {
+            dy[j] = Math.min(dy[j], dy[j - coin[i]] + 1); // + 1을 하는 이유는 동전하나는 무조건 사용한다는 가정
+          }
+        }
+        answer = dy[m]; // 도착지점에 거슬러준 갯수를 출력
+        console.log(dy);
+        return answer;
+      }
+
+      let arr = [1, 2, 5];
+      console.log(solution(15, arr));
+    </script>
+  </head>
+  <body></body>
+</html>
