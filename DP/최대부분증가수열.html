@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    function solution(n, arr) {
+      let answer = 0;
+      // 가장길이가 긴 증가수열 찾아라
+      // dynamic 테이블의 index는 arr의 i번째 숫자가 마지막 증가수열의 숫자가 되어야한다.
+      const dy = Array.from({ length: n }, () => 1);
+
+      dy[0] = 1;
+
+      // 일단 1로 시작
+      // 앞의 수를 뒤지고 더 작은 수 중에 제일 큰 수의 증가 수열을 더해준다.
+      for (let i = 1; i < n; i++) {
+        let max = 0;
+        for (let j = 0; j < i; j++) {
+          // 이전의 숫자들 보다 작고
+          // 그중에서도 제일 큰 숫자를 고른다. => 제일 증가 수열이 큰
+          if (arr[j] < arr[i] && max < dy[j]) {
+            max = dy[j];
+          }
+          dy[i] = max + 1;
+        }
+        dy[i] = max + 1;
+        answer = Math.max(answer, dy[i]);
+      }
+
+      return answer;
+    }
+
+    console.log(solution(8, [5, 3, 7, 8, 6, 2, 9, 4]));
+  </script>
+  <body></body>
+</html>
