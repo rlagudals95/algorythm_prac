@@ -14,19 +14,18 @@
       function solution(n, steps) {
         let answer = 0;
 
-        // 점화식을 위해 전의 결과들을 저장할 array 생성
-        const dy = Array.from({ length: n + 1 }, () => 0);
+        const map = Array.from({ length: n + 2 }, () => 0);
 
-        dy[1] = 1; // 한번에 갈수있는 거리들 세팅
-        dy[2] = 2; // 한번에 갈수있는 거리들 세팅
+        //시작점에서 첫번째 돌다리로 가는 경우의 수
+        map[1] = 1;
+        //시작점에서 ...
+        map[2] = 2;
 
-        for (let i = 3; i <= n; i++) {
-          // 위에서 세팅해놓은 한발자국 두발자국으로 갈수 있는 수가 다음 계단을 오를 수 있는 수
-          dy[i] = dy[i - 2] + dy[i - 1];
+        for (let i = 3; i < n + 1; i++) {
+          map[i] = map[i - 1] + map[i - 2];
         }
-        answer = dy[n];
 
-        return answer;
+        return map[n];
       }
 
       const steps = [1, 2];
