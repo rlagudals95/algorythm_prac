@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 점화식은 이전 값들을 이용해 최대의 수를 구하는 문제가 많다
+      function solution(triangle) {
+        for (let i = 1; i < triangle.length; i++) {
+          for (let j = 0; j < triangle[i].length; j++) {
+            // 이전행의 값들을 가져오기
+            const firstCase = triangle[i - 1][j - 1] ?? 0;
+            const secondCase = triangle[i - 1][j] ?? 0;
+            console.log(firstCase, secondCase);
+            if (secondCase >= firstCase) {
+              triangle[i][j] += secondCase;
+              continue;
+            }
+            triangle[i][j] += firstCase;
+          }
+        }
+        return Math.max(...triangle.at(-1));
+      }
+      console.log(
+        solution([[7], [3, 8], [8, 1, 0], [2, 7, 4, 4], [4, 5, 2, 6, 5]])
+      );
+    </script>
+  </body>
+</html>
