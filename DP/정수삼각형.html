@@ -11,18 +11,19 @@
       function solution(triangle) {
         for (let i = 1; i < triangle.length; i++) {
           for (let j = 0; j < triangle[i].length; j++) {
-            // 이전행의 값들을 가져오기
-            const firstCase = triangle[i - 1][j - 1] ?? 0;
-            const secondCase = triangle[i - 1][j] ?? 0;
-            console.log(firstCase, secondCase);
-            if (secondCase >= firstCase) {
-              triangle[i][j] += secondCase;
+            const first = triangle[i - 1][j] ?? 0;
+            const second = triangle[i - 1][j - 1] ?? 0;
+
+            if (first > second) {
+              triangle[i][j] += first;
               continue;
             }
-            triangle[i][j] += firstCase;
+
+            triangle[i][j] += second;
           }
         }
-        return Math.max(...triangle.at(-1));
+
+        return Math.max(...triangle?.at(-1));
       }
       console.log(
         solution([[7], [3, 8], [8, 1, 0], [2, 7, 4, 4], [4, 5, 2, 6, 5]])
