@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 점화식은 이전 값들을 이용해 최대의 수를 구하는 문제가 많다
+      function solution(triangle) {
+        for (let i = 1; i < triangle.length; i++) {
+          for (let j = 0; j < triangle[i].length; j++) {
+            const first = triangle[i - 1][j] ?? 0;
+            const second = triangle[i - 1][j - 1] ?? 0;
+
+            if (first > second) {
+              triangle[i][j] += first;
+              continue;
+            }
+
+            triangle[i][j] += second;
+          }
+        }
+
+        return Math.max(...triangle?.at(-1));
+      }
+      console.log(
+        solution([[7], [3, 8], [8, 1, 0], [2, 7, 4, 4], [4, 5, 2, 6, 5]])
+      );
+    </script>
+  </body>
+</html>
