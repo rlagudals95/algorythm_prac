@@ -12,10 +12,11 @@ function solution(A, K) {
 
   // 내림차순으로 정렬
   combinations.sort((a, b) => b - a);
-
+  console.log("combinations :", combinations);
   // K번째로 큰 수 반환
   return combinations[K - 1];
 }
 
 // A = [1,2,3,4,5]
 // K = 1
+console.log(solution([1, 2, 3, 4, 5], 1));
