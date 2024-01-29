@@ -6,26 +6,26 @@ function solution(n, m, arr) {
 
   let lt = 0;
 
-  // sum이 m보다 작으면 rt가 증가
-  // sum이 m보다 크면 lt가 가르키는 곳을 sum에서 빼고 lt 증가
-
   let sum = 0;
 
+  // sum이 m보다 작으면 rt가 증가
+  // sum이 m보다 크면 lt가 가르키는 곳을 sum에서 빼고 lt 증가
   for (let rt = 0; rt < arr.length; rt++) {
     sum += arr[rt];
+
     if (sum === m) {
       answer++;
     }
 
-    // 연속부분 수열 총합이 m 보다 큰 경우는 lt를 빼면서 확인
+    // 총합보다 크다면 lt를 빼고 확인해본다.
     while (sum >= m) {
       sum -= arr[lt++];
-
       if (sum === m) {
         answer++;
       }
     }
   }
+
   return answer;
 }
 
