@@ -6,22 +6,20 @@ function solution(arr) {
   let answer = arr;
 
   for (let i = 0; i < arr.length; i++) {
-    let tmp = arr[i], // 현재 값을 tmp에 저장
-      j;
+    let tmp = arr[i]; // 현재 요소 저장
+    let j;
 
-    // i의 전의 값들을 모두 탐색
+    //현재요소 전의 값들을 탐색후 정렬
+
     for (j = i - 1; j >= 0; j--) {
-      // 현재 값보다 전의 값이 더 크다면
-      // 뒤로 복사
       if (arr[j] > tmp) {
+        // 전 값이 현재값보다 크다?
         arr[j + 1] = arr[j];
       } else {
         break;
       }
     }
-    // i전의 값들을 모두 탐색하고 큰 수가 뒤로 갔으니
-    // 뒷지점에 tmp를 삽입
-    console.log(j + 1);
+
     arr[j + 1] = tmp;
   }
 
