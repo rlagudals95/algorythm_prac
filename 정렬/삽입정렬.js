@@ -21,6 +21,7 @@ function solution(arr) {
     }
     // i전의 값들을 모두 탐색하고 큰 수가 뒤로 갔으니
     // 뒷지점에 tmp를 삽입
+    console.log(j + 1);
     arr[j + 1] = tmp;
   }
 
