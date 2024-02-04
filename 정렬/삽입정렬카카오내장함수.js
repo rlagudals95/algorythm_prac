@@ -2,27 +2,22 @@
 function solution(size, arr) {
   let answer = [];
 
-  arr.forEach((x) => {
+  arr.forEach((c, index) => {
     let pos = -1;
+
     for (let i = 0; i < size; i++) {
-      if (x === answer[i]) {
-        // hit
-        pos = i;
+      if (answer[i] === c) {
+        pos = c;
       }
     }
 
     if (pos === -1) {
-      // miss인 경우엔 캐시의 마지막 값을 제거하고 뒤로 하나씩 땡긴다.
-
-      answer.unshift(x);
+      answer.unshift(c);
       if (answer.length > size) answer.pop();
     } else {
-      answer.splice(pos, 1);
-      answer.unshift(x);
+      answer.unshift(answer.splice(index, 1));
     }
   });
 
   return answer;
 }
-
-console.log(solution(5, [1, 2, 3, 2, 6, 2, 3, 5, 7]));
