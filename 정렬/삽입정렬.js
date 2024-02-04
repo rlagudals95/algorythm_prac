@@ -6,17 +6,14 @@ function solution(arr) {
   let answer = arr;
 
   for (let i = 0; i < arr.length; i++) {
-    let tmp = arr[i]; // 현재 요소 저장
+    let tmp = arr[i];
     let j;
 
-    //현재요소 전의 값들을 탐색후 정렬
-
     for (j = i - 1; j >= 0; j--) {
-      if (arr[j] > tmp) {
-        // 전 값이 현재값보다 크다?
-        arr[j + 1] = arr[j];
-      } else {
+      if (tmp > arr[j]) {
         break;
+      } else {
+        [arr[j + 1], arr[j]] = [arr[j], arr[j + 1]];
       }
     }
 
