@@ -3,14 +3,15 @@ function quickSort(arr) {
     return arr;
   }
 
-  const pivot = arr[Math.floor(arr.length / 2)];
   const left = [];
   const right = [];
+  const pivot = arr[parseInt(arr.length / 2)];
 
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] < pivot) {
       left.push(arr[i]);
     }
+
     if (arr[i] > pivot) {
       right.push(arr[i]);
     }
@@ -20,7 +21,7 @@ function quickSort(arr) {
 }
 
 // 예제 사용
-const unsortedArray = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5];
+const unsortedArray = [4, 2, 3, 5, 6, 7, 1];
 const sortedArray = quickSort(unsortedArray);
 
 console.log("정렬 전:", unsortedArray);
