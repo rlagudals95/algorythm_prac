@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function solution (n, m, numbers) {
+            let answer;
+
+            // m이 number에 몇 번째에 위치하는지 이분검색을 이용해 찾아내시오
+            numbers.sort();
+
+            
+            let lt = 0;
+            let rt = numbers.length - 1;
+
+            while(lt <= rt){
+
+                let mid = Math.floor(lt + rt / 2); // 초기 가운데 지점
+
+                if(numbers[mid] === m){
+                    return mid + 1;
+                } 
+
+                if(numbers[mid] > m){
+                    rt = mid
+                } else {
+                    lt = mid
+                }
+
+            }
+
+            return -1; 
+        }
+        console.log(solution(8, 32, [23, 87, 65, 12, 57, 32, 99, 81]))
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

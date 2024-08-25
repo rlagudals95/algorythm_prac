@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 쇠막대기를 자른다
+        // '(' 는 쇠막대기가 시작됨 ')'는 쇠막대기가 끝난다.
+        // '()'는 레이저를 의미한다.
+        // 여러 쇠막대기가 겹쳐져있을때 잘려서 나눠진 쇠막대기의 총 합을 구하라
+        function solution (input) {
+
+            let answer = 0;
+
+            let stack = [];
+
+            // 일단 넣는다.
+            // 그리고 stack의 끝이 ( input이 ) 이면 앞의 것들을 다 더한다
+            // 그리고 stack을 비운다
+
+            input.split('').forEach((current, index) => {
+                // 이전의 값이 '(' 이고 현재 값이 ')' 면 커팅 => stack에서 pop하고 stack.length를 ++
+                const prev = input[index - 1];
+                const isCut = prev === '(' && current === ')'
+
+                // cut이 아니고 
+                const isLast = !isCut && stack[stack.length - 1] === '(' && current === ')';
+
+                if(isCut) {
+                    stack.pop();
+             
+                    answer += stack.length;
+                } else if (isLast) {
+                    stack.pop();
+                } else {
+                    stack.push(current)
+                }
+            })
+
+            return answer;
+        }
+
+        const input = '()(((()())(())()))(())'//'(((()(()()))(())()))(()())'
+
+        console.log(solution(input))
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

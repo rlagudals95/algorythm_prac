@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+  
+        function solution (board, moves) {
+
+            let answer = 0;
+
+            const stack = [];
+
+            moves.forEach((move, index)=> {
+
+                const current = board[move - 1][index];
+
+                if(stack[stack.length - 1] === current){
+                    stack.pop();
+                    answer +=2;
+                } else {
+                    board[move - 1][index] = 0;
+                    stack.push(current);
+                }
+            })
+
+            return answer;
+        }
+
+        const input = [[0,0,0,0,0],
+                       [0,0,1,0,3],
+                       [0,2,5,0,1],
+                       [4,2,4,4,2],
+                       [3,5,1,3,1]];
+
+        const moves = [1,5,3,5,1,2,1,4];  
+
+        console.log(solution(input, moves))
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
