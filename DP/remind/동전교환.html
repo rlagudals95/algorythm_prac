@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script>
+      //m 만큼의 돈을 거슬러줄 수 있는 최소의 동전갯수를 구하시오
+      function solution(m, coin) {
+        let answer = 0;
+
+        // 다이나믹 테이블(숫자는 넉넉하게 1000으로)
+        // 1000보다 작은 숫자를 채워넣을 예정
+        const dy = Array.from({ length: m + 1 }, () => 1000);
+
+        // 아무 동전도 사용하지 않았을 경우 출발점 체크
+        dy[0] = 0;
+
+        for (let i = 0; i < coin.length; i++) {
+          // 거슬러 줄 수 있는 금액의 크기만큼 loop를 돌아서 dynamic 테이블을 채워줘야한다.
+          for (let j = coin[i]; j <= m; j++) {
+            // j는 현재 거슬러 줘야할 금액
+            // coin[i]는 내가 현재 거슬러 줄수 있는 금액 단위
+            // 현재 거슬러줘야할 금액 j에서 거슬러 줄수 있는 금액 coin[i]를 빼고 사용한 동전의 개수 1을 더한다.
+
+            const prevCoinCount = dy[j];
+            const coinCount = dy[j - coin[i]] + 1;
+
+            // 최소값을 다이나믹 테이블에 채워넣는다.
+            dy[j] = Math.min(prevCoinCount, coinCount);
+          }
+        }
+        console.log(dy)
+        return dy[m];
+      }
+
+      let arr = [1, 2, 5];
+      console.log(solution(15, arr)); // 3
+    </script>
+  </head>
+  <body></body>
+</html>
